@@ -8,12 +8,6 @@ class Day02:
     _data_file = 'day_02_data.txt'
     _data_file_path = Path(_working_dir, _data_file)
 
-    _understood_commands = [
-        'down',
-        'forward',
-        'up',
-    ]
-
     @classmethod
     def drive_sub(cls):
         part_1_horizontal_pos, part_1_depth_pos = cls._perform_part_1()
