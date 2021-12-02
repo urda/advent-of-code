@@ -29,7 +29,6 @@ class Day02:
         print(f'Determined Depth: {part_2_depth_pos}')
         print(f'Determined: {part_2_horizontal_pos * part_2_depth_pos}')
 
-
     @classmethod
     def _get_lines(cls) -> List[str]:
         lines = []
