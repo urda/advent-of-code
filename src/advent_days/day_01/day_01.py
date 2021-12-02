@@ -12,9 +12,10 @@ class Day01:
     @classmethod
     def measure_depth(cls):
         part_1_answer = cls._perform_part_1()
+        part_2_answer = cls._perform_part_2()
 
         print(f'Part 01 Determined: {part_1_answer}')
-        print(f'Part 02 Determined: ???')
+        print(f'Part 02 Determined: {part_2_answer}')
 
     @classmethod
     def _get_lines(cls) -> List[int]:
@@ -40,5 +41,31 @@ class Day01:
             if current_value > previous_value:
                 increased_count += 1
             previous_value = current_value
+
+        return increased_count
+
+    @classmethod
+    def _perform_part_2(cls) -> int:
+        lines = cls._get_lines()
+
+        rolling_window_size = 3
+        rolling_window = []
+        increased_count = -1
+        previous_value = ~sys.maxsize
+
+        for loading_value in lines:
+            rolling_window.append(loading_value)
+
+            # If we don't have three entries to read, keep loading
+            if len(rolling_window) < rolling_window_size:
+                continue
+
+            current_total = sum(rolling_window)
+
+            if current_total > previous_value:
+                increased_count += 1
+
+            previous_value = current_total
+            rolling_window.pop(0)
 
         return increased_count
