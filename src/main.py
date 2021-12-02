@@ -11,6 +11,7 @@ from typing import (
 )
 
 from advent_days.day_01.day_01 import Day01
+from advent_days.day_02.day_02 import Day02
 
 
 @dataclass()
@@ -25,7 +26,8 @@ class MenuDayOption:
 
 
 menu_options = [
-    MenuDayOption(1, Day01.measure_depth)
+    MenuDayOption(1, Day01.measure_depth),
+    MenuDayOption(2, Day02.drive_sub),
 ]
 
 
