@@ -1,29 +1,14 @@
 #!/usr/bin/env python3
 
-from dataclasses import (
-    dataclass,
-    field,
+from advent_days import (
+    Day01,
+    Day02,
 )
-from typing import (
-    Callable,
-    Dict,
-    List,
+from advent_utils.menu_utils import (
+    build_menu_lookups,
+    print_menu,
 )
-
-from advent_days.day_01.day_01 import Day01
-from advent_days.day_02.day_02 import Day02
-
-
-@dataclass()
-class MenuDayOption:
-    day_id: int
-    day_func: Callable
-
-    menu_entry_title: str = field(init=False)
-
-    def __post_init__(self):
-        self.menu_entry_title = f'Day {self.day_id:02}'
-
+from advent_utils.popo import MenuDayOption
 
 menu_options = [
     MenuDayOption(1, Day01.measure_depth),
@@ -31,28 +16,9 @@ menu_options = [
 ]
 
 
-def build_lookups(menu_data: List[MenuDayOption]) -> Dict[int, Callable]:
-    results = {}
-    for menu_entry in menu_data:
-        results[menu_entry.day_id] = menu_entry.day_func
-    return results
-
-
-def print_menu(menu_data: List[MenuDayOption]):
-    line_br = '-' * 80
-
-    print(line_br)
-    print()
-    print('Pick an advent day from below, or enter "0" to quit:')
-    print()
-    for menu_entry in menu_data:
-        print(menu_entry.menu_entry_title)
-    print()
-
-
 if __name__ == '__main__':
     running = True
-    lookups = build_lookups(menu_options)
+    lookups = build_menu_lookups(menu_options)
 
     while running:
         print_menu(menu_options)
