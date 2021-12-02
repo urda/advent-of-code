@@ -16,6 +16,22 @@ class Day02:
 
     @classmethod
     def drive_sub(cls):
+        part_1_horizontal_pos, part_1_depth_pos = cls._perform_part_1()
+
+        print(f'Determined Horizontal: {part_1_horizontal_pos}')
+        print(f'Determined Depth: {part_1_depth_pos}')
+        print(f'Determined: {part_1_horizontal_pos * part_1_depth_pos}')
+
+    @classmethod
+    def _get_lines(cls) -> List[str]:
+        lines = []
+        with open(cls._data_file_path, 'r') as data_file:
+            for line in data_file:
+                lines.append(line)
+        return lines
+
+    @classmethod
+    def _perform_part_1(cls) -> (int, int):
         commands = cls._get_lines()
 
         horizontal_pos = 0
@@ -36,14 +52,4 @@ class Day02:
                 case _:
                     raise ValueError(f'Cannot process command "{direction}"')
 
-        print(f'Determined Horizontal: {horizontal_pos}')
-        print(f'Determined Depth: {depth_pos}')
-        print(f'Determined: {horizontal_pos * depth_pos}')
-
-    @classmethod
-    def _get_lines(cls) -> List[str]:
-        lines = []
-        with open(cls._data_file_path, 'r') as data_file:
-            for line in data_file:
-                lines.append(line)
-        return lines
+        return horizontal_pos, depth_pos
