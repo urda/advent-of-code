@@ -11,6 +11,24 @@ class Day01:
 
     @classmethod
     def measure_depth(cls):
+        part_1_answer = cls._perform_part_1()
+
+        print(f'Part 01 Determined: {part_1_answer}')
+        print(f'Part 02 Determined: ???')
+
+    @classmethod
+    def _get_lines(cls) -> List[int]:
+        lines = []
+        with open(cls._data_file_path, 'r') as data_file:
+            for line in data_file:
+                try:
+                    lines.append(int(line))
+                except ValueError as error:
+                    raise error
+        return lines
+
+    @classmethod
+    def _perform_part_1(cls) -> int:
         lines = cls._get_lines()
 
         # Set the first seen value to the smallest value possible for
@@ -23,15 +41,4 @@ class Day01:
                 increased_count += 1
             previous_value = current_value
 
-        print(f'Determined: {increased_count}')
-
-    @classmethod
-    def _get_lines(cls) -> List[int]:
-        lines = []
-        with open(cls._data_file_path, 'r') as data_file:
-            for line in data_file:
-                try:
-                    lines.append(int(line))
-                except ValueError as error:
-                    raise error
-        return lines
+        return increased_count
