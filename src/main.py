@@ -1,13 +1,23 @@
+#!/usr/bin/env python3
+
 from dataclasses import (
     dataclass,
     field,
 )
-from typing import List
+from typing import (
+    Callable,
+    Dict,
+    List,
+)
+
+from advent_days.day_01.day_01 import Day01
 
 
 @dataclass()
 class MenuDayOption:
     day_id: int
+    day_func: Callable
+
     menu_entry_title: str = field(init=False)
 
     def __post_init__(self):
@@ -15,18 +25,32 @@ class MenuDayOption:
 
 
 menu_options = [
-    MenuDayOption(1)
+    MenuDayOption(1, Day01.measure_depth)
 ]
 
 
+def build_lookups(menu_data: List[MenuDayOption]) -> Dict[int, Callable]:
+    results = {}
+    for menu_entry in menu_data:
+        results[menu_entry.day_id] = menu_entry.day_func
+    return results
+
+
 def print_menu(menu_data: List[MenuDayOption]):
+    line_br = '-' * 80
+
+    print(line_br)
+    print()
     print('Pick an advent day from below, or enter "0" to quit:')
+    print()
     for menu_entry in menu_data:
         print(menu_entry.menu_entry_title)
+    print()
 
 
 if __name__ == '__main__':
     running = True
+    lookups = build_lookups(menu_options)
 
     while running:
         print_menu(menu_options)
@@ -37,9 +61,10 @@ if __name__ == '__main__':
         else:
             menu_option_parsed = None
 
-        match menu_option_parsed:
-            case 0:
-                print('OK Thanks!')
-                running = False
-            case _:
-                print('Input not understood. Try again.')
+        if menu_option_parsed in lookups:
+            lookups.get(menu_option_parsed)()
+        elif menu_option_parsed == 0:
+            print('OK Thanks!')
+            running = False
+        else:
+            print('Input not understood. Try again.')
