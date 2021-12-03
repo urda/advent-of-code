@@ -16,11 +16,9 @@ def build_menu_lookups(menu_data: List[MenuDayOption]) -> Dict[int, Callable]:
 
 def print_menu(menu_data: List[MenuDayOption]):
     line_br = '-' * 80
+    available_days = len(menu_data)
 
     print(line_br)
     print()
-    print('Pick an advent day from below, or enter "0" to quit:')
-    print()
-    for menu_entry in menu_data:
-        print(menu_entry.menu_entry_title)
+    print(f'Enter an advent day 1-{available_days}, or enter "0" to quit:')
     print()
