@@ -5,7 +5,7 @@ https://adventofcode.com/2021
 ## Environment and Tools in Use
 
 - git 2.34.1
-- iTerm2 3.4.12
+- iTerm2 3.4.14
 - macOS Monterey 12.0.1
 - PyCharm 2021.3 (Professional Edition)
 - Python 3.10
