@@ -1,5 +1,11 @@
+from enum import Enum
 from pathlib import Path
 from typing import List
+
+
+class LifeSupportFilterMode(Enum):
+    CO2 = 'CO2'
+    O2 = 'O2'
 
 
 class Day03:
@@ -13,11 +19,17 @@ class Day03:
     @classmethod
     def diagnose_sub(cls):
         part_1_gamma, part_1_epsilon = cls._perform_part_1()
+        part_2_o2, part_2_co2 = cls._perform_part_2()
 
         print('Part 1:')
         print(f'Determined Gamma: {part_1_gamma}')
         print(f'Determined Epsilon: {part_1_epsilon}')
         print(f'Determined: {part_1_gamma * part_1_epsilon}')
+        print('---')
+        print('Part 2')
+        print(f'Determined O2: {part_2_o2}')
+        print(f'Determined CO2: {part_2_co2}')
+        print(f'Determined: {part_2_o2 * part_2_co2}')
 
     @classmethod
     def _get_lines(cls) -> List[List[int]]:
@@ -57,3 +69,63 @@ class Day03:
             int(''.join(str(bit) for bit in epsilon_rate_values), 2)
 
         return gamma_rate_values, epsilon_rate_values
+
+    @classmethod
+    def _compute_life_support_value(
+            cls,
+            life_support: LifeSupportFilterMode
+    ) -> List[int]:
+        result = None
+        binary_values = cls._get_lines()
+
+        for idx in range(cls._binary_value_length):
+            seen_zeros = 0
+            seen_ones = 0
+            for binary_data in binary_values:
+                if binary_data[idx] == 0:
+                    seen_zeros += 1
+                elif binary_data[idx] == 1:
+                    seen_ones += 1
+
+            rebuild_list = []
+            for binary_data in binary_values:
+                match life_support:
+                    case LifeSupportFilterMode.CO2:
+                        if seen_ones < seen_zeros:
+                            if binary_data[idx] == 1:
+                                rebuild_list.append(binary_data)
+                        else:
+                            if binary_data[idx] == 0:
+                                rebuild_list.append(binary_data)
+                    case LifeSupportFilterMode.O2:
+                        if seen_ones >= seen_zeros:
+                            if binary_data[idx] == 1:
+                                rebuild_list.append(binary_data)
+                        else:
+                            if binary_data[idx] == 0:
+                                rebuild_list.append(binary_data)
+            binary_values = rebuild_list
+
+            if len(binary_values) == 1:
+                result = binary_values.pop(0)
+                break
+
+        if result is None:
+            raise ValueError(f'Something went wrong when parsing the input '
+                             f'for {life_support}')
+
+        return result
+
+    @classmethod
+    def _perform_part_2(cls) -> (int, int):
+        o2_gen_value = \
+            cls._compute_life_support_value(LifeSupportFilterMode.O2)
+        co2_gen_value = \
+            cls._compute_life_support_value(LifeSupportFilterMode.CO2)
+
+        o2_result = \
+            int(''.join(str(bit) for bit in o2_gen_value), 2)
+        co2_result = \
+            int(''.join(str(bit) for bit in co2_gen_value), 2)
+
+        return o2_result, co2_result
