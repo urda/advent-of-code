@@ -3,6 +3,7 @@
 from advent_days import (
     Day01,
     Day02,
+    Day03,
 )
 from advent_utils.menu_utils import (
     build_menu_lookups,
@@ -13,6 +14,7 @@ from advent_utils.popo import MenuDayOption
 menu_options = [
     MenuDayOption(1, Day01.measure_depth),
     MenuDayOption(2, Day02.drive_sub),
+    MenuDayOption(3, Day03.diagnose_sub),
 ]
 
 
