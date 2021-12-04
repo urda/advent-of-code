@@ -34,7 +34,9 @@ if __name__ == '__main__':
         if menu_option_parsed in lookups:
             lookups.get(menu_option_parsed).solve_day_and_print()
         elif menu_option_parsed == 0:
-            print('OK Thanks!')
+            print()
+            print('OK Bye Bye!')
+            print()
             running = False
         else:
             print('Input not understood. Try again.')

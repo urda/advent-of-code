@@ -12,3 +12,9 @@ help: # Show this help screen
 clean: # Clean project files
 	find . | grep -E "(__pycache__|\.pyc|\.pyo$$)" | xargs rm -rf && \
 	:
+
+########################################################################################################################
+
+.PHONY: run
+run: # Run the CLI App
+	./src/main.py
