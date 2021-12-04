@@ -12,9 +12,9 @@ from advent_utils.menu_utils import (
 from advent_utils.popo import MenuDayOption
 
 menu_options = [
-    MenuDayOption(1, Day01.measure_depth),
-    MenuDayOption(2, Day02.drive_sub),
-    MenuDayOption(3, Day03.diagnose_sub),
+    MenuDayOption(1, Day01),
+    MenuDayOption(2, Day02),
+    MenuDayOption(3, Day03),
 ]
 
 
@@ -32,7 +32,7 @@ if __name__ == '__main__':
             menu_option_parsed = None
 
         if menu_option_parsed in lookups:
-            lookups.get(menu_option_parsed)()
+            lookups.get(menu_option_parsed).solve_day_and_print()
         elif menu_option_parsed == 0:
             print('OK Thanks!')
             running = False

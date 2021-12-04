@@ -1,16 +1,16 @@
 from typing import (
-    Callable,
     Dict,
     List,
 )
 
+from advent_days.days.day_meta import DayMeta
 from .popo import MenuDayOption
 
 
-def build_menu_lookups(menu_data: List[MenuDayOption]) -> Dict[int, Callable]:
+def build_menu_lookups(menu_data: List[MenuDayOption]) -> Dict[int, DayMeta]:
     results = {}
     for menu_entry in menu_data:
-        results[menu_entry.day_id] = menu_entry.day_func
+        results[menu_entry.day_id] = menu_entry.day_object
     return results
 
 

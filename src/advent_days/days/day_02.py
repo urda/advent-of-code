@@ -1,32 +1,32 @@
-from pathlib import Path
 from typing import List
 
+from .day_meta import DayMeta
 
-class Day02:
-    _working_dir = Path(__file__).resolve().parent
 
+class Day02(DayMeta):
     _data_file = 'day_02_data.txt'
-    _data_file_path = Path(_working_dir, _data_file)
 
     @classmethod
-    def drive_sub(cls):
+    def solve_day(cls) -> List[str]:
         part_1_horizontal_pos, part_1_depth_pos = cls._perform_part_1()
         part_2_horizontal_pos, part_2_depth_pos = cls._perform_part_2()
 
-        print('Part 1:')
-        print(f'Determined Horizontal: {part_1_horizontal_pos}')
-        print(f'Determined Depth: {part_1_depth_pos}')
-        print(f'Determined: {part_1_horizontal_pos * part_1_depth_pos}')
-        print('---')
-        print('Part 2')
-        print(f'Determined Horizontal: {part_2_horizontal_pos}')
-        print(f'Determined Depth: {part_2_depth_pos}')
-        print(f'Determined: {part_2_horizontal_pos * part_2_depth_pos}')
+        return [
+            'Part 1:',
+            f'Determined Horizontal: {part_1_horizontal_pos}',
+            f'Determined Depth: {part_1_depth_pos}',
+            f'Determined: {part_1_horizontal_pos * part_1_depth_pos}',
+            '---',
+            'Part 2',
+            f'Determined Horizontal: {part_2_horizontal_pos}',
+            f'Determined Depth: {part_2_depth_pos}',
+            f'Determined: {part_2_horizontal_pos * part_2_depth_pos}',
+        ]
 
     @classmethod
     def _get_lines(cls) -> List[str]:
         lines = []
-        with open(cls._data_file_path, 'r') as data_file:
+        with open(cls.data_dir_path(cls._data_file), 'r') as data_file:
             for line in data_file:
                 lines.append(line)
         return lines

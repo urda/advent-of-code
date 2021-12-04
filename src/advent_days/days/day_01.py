@@ -1,26 +1,23 @@
 import sys
-from pathlib import Path
 from typing import List
 
+from .day_meta import DayMeta
 
-class Day01:
-    _working_dir = Path(__file__).resolve().parent
 
+class Day01(DayMeta):
     _data_file = 'day_01_data.txt'
-    _data_file_path = Path(_working_dir, _data_file)
 
     @classmethod
-    def measure_depth(cls):
-        part_1_answer = cls._perform_part_1()
-        part_2_answer = cls._perform_part_2()
-
-        print(f'Part 01 Determined: {part_1_answer}')
-        print(f'Part 02 Determined: {part_2_answer}')
+    def solve_day(cls) -> List[str]:
+        return [
+            f'Part 01 Determined: {cls._perform_part_1()}',
+            f'Part 02 Determined: {cls._perform_part_2()}',
+        ]
 
     @classmethod
     def _get_lines(cls) -> List[int]:
         lines = []
-        with open(cls._data_file_path, 'r') as data_file:
+        with open(cls.data_dir_path(cls._data_file), 'r') as data_file:
             for line in data_file:
                 try:
                     lines.append(int(line))

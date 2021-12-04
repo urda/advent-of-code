@@ -1,6 +1,7 @@
 from enum import Enum
-from pathlib import Path
 from typing import List
+
+from .day_meta import DayMeta
 
 
 class LifeSupportFilterMode(Enum):
@@ -8,33 +9,31 @@ class LifeSupportFilterMode(Enum):
     O2 = 'O2'
 
 
-class Day03:
-    _working_dir = Path(__file__).resolve().parent
-
-    _data_file = 'day_03_data.txt'
-    _data_file_path = Path(_working_dir, _data_file)
-
+class Day03(DayMeta):
     _binary_value_length = 12
+    _data_file = 'day_03_data.txt'
 
     @classmethod
-    def diagnose_sub(cls):
+    def solve_day(cls) -> List[str]:
         part_1_gamma, part_1_epsilon = cls._perform_part_1()
         part_2_o2, part_2_co2 = cls._perform_part_2()
 
-        print('Part 1:')
-        print(f'Determined Gamma: {part_1_gamma}')
-        print(f'Determined Epsilon: {part_1_epsilon}')
-        print(f'Determined: {part_1_gamma * part_1_epsilon}')
-        print('---')
-        print('Part 2')
-        print(f'Determined O2: {part_2_o2}')
-        print(f'Determined CO2: {part_2_co2}')
-        print(f'Determined: {part_2_o2 * part_2_co2}')
+        return [
+            'Part 1:',
+            f'Determined Gamma: {part_1_gamma}',
+            f'Determined Epsilon: {part_1_epsilon}',
+            f'Determined: {part_1_gamma * part_1_epsilon}',
+            '---',
+            'Part 2',
+            f'Determined O2: {part_2_o2}',
+            f'Determined CO2: {part_2_co2}',
+            f'Determined: {part_2_o2 * part_2_co2}',
+        ]
 
     @classmethod
     def _get_lines(cls) -> List[List[int]]:
         lines = []
-        with open(cls._data_file_path, 'r') as data_file:
+        with open(cls.data_dir_path(cls._data_file), 'r') as data_file:
             for line in data_file:
                 # Strip new line element, convert to ints
                 lines.append([int(i) for i in list(line)[:-1]])
