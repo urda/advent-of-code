@@ -3,7 +3,7 @@ from typing import (
     List,
 )
 
-from advent_days.days.day_meta import DayMeta
+from advent_days.day_meta import DayMeta
 from .popo import MenuDayOption
 
 

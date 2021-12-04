@@ -3,7 +3,7 @@ from dataclasses import (
     field,
 )
 
-from advent_days.days.day_meta import DayMeta
+from advent_days.day_meta import DayMeta
 
 
 @dataclass

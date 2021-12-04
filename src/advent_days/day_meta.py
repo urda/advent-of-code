@@ -9,7 +9,7 @@ from typing import List
 class DayMeta(ABC):
     @classmethod
     def data_dir_path(cls, data_file_name: str) -> Path:
-        meta_dir = Path(__file__).resolve().parent.parent.parent.parent
+        meta_dir = Path(__file__).resolve().parent.parent.parent
         return Path(meta_dir, f'data/{data_file_name}')
 
     @classmethod
