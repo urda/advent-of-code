@@ -17,7 +17,7 @@ class Day01(DayMeta):
     @classmethod
     def _get_lines(cls) -> List[int]:
         lines = []
-        with open(cls.data_dir_path(cls._data_file), 'r') as data_file:
+        with open(cls.build_data_file_path(cls._data_file), 'r') as data_file:
             for line in data_file:
                 try:
                     lines.append(int(line))

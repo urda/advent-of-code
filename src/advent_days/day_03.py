@@ -33,7 +33,7 @@ class Day03(DayMeta):
     @classmethod
     def _get_lines(cls) -> List[List[int]]:
         lines = []
-        with open(cls.data_dir_path(cls._data_file), 'r') as data_file:
+        with open(cls.build_data_file_path(cls._data_file), 'r') as data_file:
             for line in data_file:
                 # Strip new line element, convert to ints
                 lines.append([int(i) for i in list(line)[:-1]])
