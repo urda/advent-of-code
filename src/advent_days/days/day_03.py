@@ -11,7 +11,7 @@ class LifeSupportFilterMode(Enum):
 
 class Day03(DayMeta):
     _binary_value_length = 12
-    _data_file = 'day_03_data.txt'
+    _data_file = 'day_03.txt'
 
     @classmethod
     def solve_day(cls) -> List[str]:

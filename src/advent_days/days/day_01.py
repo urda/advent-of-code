@@ -5,7 +5,7 @@ from .day_meta import DayMeta
 
 
 class Day01(DayMeta):
-    _data_file = 'day_01_data.txt'
+    _data_file = 'day_01.txt'
 
     @classmethod
     def solve_day(cls) -> List[str]:
