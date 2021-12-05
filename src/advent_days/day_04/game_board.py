@@ -56,7 +56,7 @@ class GameBoard:
 
         return result
 
-    def report_drawn_value(self, drawn_value: int):
+    def report_drawn_value(self, drawn_value: int) -> Optional[Tuple[int, int]]:
         self._last_drawn_value = drawn_value
         self._total_drawn_values += 1
 
