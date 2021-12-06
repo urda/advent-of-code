@@ -7,7 +7,7 @@ ANSWER_PREFIX = answer_day_
 PLAINTEXT_ANSWERS = ./answer_day_*.md
 PLAINTEXT_KEY = theurdahesayopensesame
 
-GPG_ARGUMENTS_ENCRYPT = -c --passphrase "$(PLAINTEXT_KEY)"
+GPG_ARGUMENTS_ENCRYPT = -c --armor --passphrase "$(PLAINTEXT_KEY)"
 GPG_ARGUMENTS_DECRYPT = -d --passphrase "$(PLAINTEXT_KEY)"
 
 ########################################################################################################################
@@ -50,14 +50,14 @@ doEncrypt04:
 ########################################################################################################################
 
 doDecrypt01:
-	gpg $(GPG_ARGUMENTS_DECRYPT) ./$(ANSWER_PREFIX)01.md.gpg > ./$(ANSWER_PREFIX)01.md
+	gpg $(GPG_ARGUMENTS_DECRYPT) ./$(ANSWER_PREFIX)01.md.asc > ./$(ANSWER_PREFIX)01.md
 
 doDecrypt02:
-	gpg $(GPG_ARGUMENTS_DECRYPT) ./$(ANSWER_PREFIX)02.md.gpg > ./$(ANSWER_PREFIX)02.md
+	gpg $(GPG_ARGUMENTS_DECRYPT) ./$(ANSWER_PREFIX)02.md.asc > ./$(ANSWER_PREFIX)02.md
 
 doDecrypt03:
-	gpg $(GPG_ARGUMENTS_DECRYPT) ./$(ANSWER_PREFIX)03.md.gpg > ./$(ANSWER_PREFIX)03.md
+	gpg $(GPG_ARGUMENTS_DECRYPT) ./$(ANSWER_PREFIX)03.md.asc > ./$(ANSWER_PREFIX)03.md
 
 doDecrypt04:
-	gpg $(GPG_ARGUMENTS_DECRYPT) ./$(ANSWER_PREFIX)04.md.gpg > ./$(ANSWER_PREFIX)04.md
+	gpg $(GPG_ARGUMENTS_DECRYPT) ./$(ANSWER_PREFIX)04.md.asc > ./$(ANSWER_PREFIX)04.md
 
