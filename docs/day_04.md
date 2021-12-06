@@ -4,7 +4,8 @@ You're already almost 1.5km (almost a mile) below the surface of the ocean,
 already so deep that you can't see any sunlight. What you **can** see, however,
 is a giant squid that has attached itself to the outside of your submarine.
 
-Maybe it wants to play bingo?
+Maybe it wants to play
+[bingo](https://en.wikipedia.org/wiki/Bingo_(American_version))?
 
 Bingo is played on a set of boards each consisting of a 5x5 grid of numbers.
 Numbers are chosen at random, and the chosen number is **marked** on all boards
