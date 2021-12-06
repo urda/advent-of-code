@@ -30,6 +30,9 @@ mkvirtualenv advent -p $(which python3.10)
 - Day 04
   - [Docs](https://github.com/urda/advent-of-code/blob/master/docs/day_04.md)
   - [Code](https://github.com/urda/advent-of-code/tree/master/src/advent_days/day_04/)
+- Day 05
+  - [Docs](https://github.com/urda/advent-of-code/blob/master/docs/day_05.md)
+  - [Code](https://github.com/urda/advent-of-code/tree/master/src/advent_days/day_05/)
 
 ### Advent Day Answers
 
