@@ -16,12 +16,31 @@ class Day05(DayMeta):
 
     @classmethod
     def solve_day(cls) -> List[str]:
-        part_1_sum = cls._perform_part_1()
+        part_1_lines, part_1_dimensions = cls._filter_part_1(cls._get_lines())
+        part_1_sum = cls._perform_part_1(part_1_lines, part_1_dimensions)
 
         return [
             'Part 1:',
             f'Determined: {part_1_sum}',
         ]
+
+    @classmethod
+    def _build_line(cls, raw_data: str) -> VentLine:
+        point_a, point_b = cls._build_points(raw_data)
+        return VentLine(point_a, point_b)
+
+    @classmethod
+    def _build_points(cls, raw_data: str) -> Tuple[VentPoint, VentPoint]:
+        line_entry_no_newline = raw_data.strip()
+        point_a, point_b = line_entry_no_newline.split(cls._delimiter)
+
+        point_a_x_raw, point_a_y_raw = point_a.split(cls._point_delimiter)
+        point_b_x_raw, point_b_y_raw = point_b.split(cls._point_delimiter)
+
+        point_a_x, point_a_y = int(point_a_x_raw), int(point_a_y_raw)
+        point_b_x, point_b_y = int(point_b_x_raw), int(point_b_y_raw)
+
+        return VentPoint(point_a_x, point_a_y), VentPoint(point_b_x, point_b_y)
 
     @classmethod
     def _get_lines(cls) -> List[str]:
@@ -32,13 +51,57 @@ class Day05(DayMeta):
         return lines
 
     @classmethod
-    def _perform_part_1(cls) -> int:
-        vent_lines, map_dimensions = cls._filter_part_1(cls._get_lines())
+    def _perform_part_1(
+            cls,
+            vent_lines: List[VentLine],
+            map_dimensions: Tuple[int, int]
+    ) -> int:
         vent_map = [
             [0 for x in range(map_dimensions[0])]
             for _ in range(map_dimensions[1])
         ]
 
+        return cls._process_vent_lines_fixed_axis(vent_lines, vent_map)
+
+    @classmethod
+    def _filter_part_1(
+            cls,
+            raw_data: List[str]
+    ) -> Tuple[List[VentLine], Tuple[int, int]]:
+        results = []
+        largest_x = -1
+        largest_y = -1
+
+        for line_entry_raw in raw_data:
+            point_a, point_b = cls._build_points(line_entry_raw)
+            point_a_x, point_a_y = point_a.x, point_a.y
+            point_b_x, point_b_y = point_b.x, point_b.y
+
+            if (point_a_x == point_b_x) or (point_a_y == point_b_y):
+                # Record the points and line
+                line_point_a = VentPoint(point_a_x, point_a_y)
+                line_point_b = VentPoint(point_b_x, point_b_y)
+                vent_line = VentLine(line_point_a, line_point_b)
+                results.append(vent_line)
+
+                # Update our map details
+                if point_a_x > largest_x or point_b_x > largest_x:
+                    largest_x = point_a_x \
+                        if point_a_x > largest_x else \
+                        point_b_x
+                if point_a_y > largest_y or point_b_y > largest_y:
+                    largest_y = point_a_y \
+                        if point_a_y > largest_y else \
+                        point_b_y
+
+        return results, (largest_x + 1, largest_y + 1)
+
+    @classmethod
+    def _process_vent_lines_fixed_axis(
+            cls,
+            vent_lines: List[VentLine],
+            vent_map: List[List[int]],
+    ) -> int:
         multipoints_seen = 0
 
         for vent_line in vent_lines:
@@ -64,41 +127,3 @@ class Day05(DayMeta):
                         multipoints_seen += 1
 
         return multipoints_seen
-
-    @classmethod
-    def _filter_part_1(
-            cls,
-            raw_data: List[str]
-    ) -> Tuple[List[VentLine], Tuple[int, int]]:
-        results = []
-        largest_x = -1
-        largest_y = -1
-
-        for line_entry_raw in raw_data:
-            line_entry_no_newline = line_entry_raw.strip()
-            point_a, point_b = line_entry_no_newline.split(cls._delimiter)
-
-            point_a_x_raw, point_a_y_raw = point_a.split(cls._point_delimiter)
-            point_b_x_raw, point_b_y_raw = point_b.split(cls._point_delimiter)
-
-            point_a_x, point_a_y = int(point_a_x_raw), int(point_a_y_raw)
-            point_b_x, point_b_y = int(point_b_x_raw), int(point_b_y_raw)
-
-            if (point_a_x == point_b_x) or (point_a_y == point_b_y):
-                # Record the points and line
-                line_point_a = VentPoint(point_a_x, point_a_y)
-                line_point_b = VentPoint(point_b_x, point_b_y)
-                vent_line = VentLine(line_point_a, line_point_b)
-                results.append(vent_line)
-
-                # Update our map details
-                if point_a_x > largest_x or point_b_x > largest_x:
-                    largest_x = point_a_x \
-                        if point_a_x > largest_x else \
-                        point_b_x
-                if point_a_y > largest_y or point_b_y > largest_y:
-                    largest_y = point_a_y \
-                        if point_a_y > largest_y else \
-                        point_b_y
-
-        return results, (largest_x + 1, largest_y + 1)
