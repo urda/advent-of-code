@@ -41,9 +41,13 @@ class Day06(DayMeta):
 
     @classmethod
     def _cycle_fish(cls, fish_buckets):
+        # Extract fish at bucket zero
         day_zero_fish = fish_buckets[0]
+        # Slice everyone but day zero
         fish = fish_buckets[1:]
+        # Put the fish at the end (these are the new fish)
         fish.append(day_zero_fish)
+        # Put the current fish in their "reset" value bucket
         fish[6] += day_zero_fish
         return fish
 
