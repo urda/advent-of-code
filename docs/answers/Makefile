@@ -28,10 +28,22 @@ clean: # Clean plaintext answers
 ########################################################################################################################
 
 .PHONY: encrypt
-encrypt: doEncrypt01 doEncrypt02 doEncrypt03 doEncrypt04 doEncrypt05 doEncrypt06 doEncrypt07 # Encrypt the answer files
+encrypt: doEncrypt01 # Encrypt the answer files
+encrypt: doEncrypt02
+encrypt: doEncrypt03
+encrypt: doEncrypt04
+encrypt: doEncrypt05
+encrypt: doEncrypt06
+encrypt: doEncrypt07
 
 .PHONY: decrypt
-decrypt: doDecrypt01 doDecrypt02 doDecrypt03 doDecrypt04 doDecrypt05 doDecrypt06 doDecrypt07 # Decrypt the answer files
+decrypt: doDecrypt01 # Decrypt the answer files
+decrypt: doDecrypt02
+decrypt: doDecrypt03
+decrypt: doDecrypt04
+decrypt: doDecrypt05
+decrypt: doDecrypt06
+decrypt: doDecrypt07
 
 ########################################################################################################################
 
