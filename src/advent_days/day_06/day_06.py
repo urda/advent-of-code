@@ -12,10 +12,14 @@ class Day06(DayMeta):
     @classmethod
     def solve_day(cls) -> List[str]:
         part_1_result = cls._perform_part_1()
+        part_2_result = cls._perform_part_2()
 
         return [
             'Part 1:',
             f'Determined: {part_1_result}',
+            '---',
+            'Part 2:',
+            f'Determined: {part_2_result}',
         ]
 
     @classmethod
@@ -30,7 +34,14 @@ class Day06(DayMeta):
 
     @classmethod
     def _perform_part_1(cls) -> int:
-        day_limit = 80
+        return cls._perform_work(80)
+
+    @classmethod
+    def _perform_part_2(cls) -> int:
+        return cls._perform_work(256)
+
+    @classmethod
+    def _perform_work(cls, day_limit: int) -> int:
         fish_data = cls._get_raw_data()
 
         for _ in range(day_limit):
