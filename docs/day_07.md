@@ -49,5 +49,5 @@ This costs a total of `37` fuel. This is the cheapest possible outcome; more
 expensive outcomes include aligning at position `1` (`41` fuel), position `3`
 (`39` fuel), or position `10` (`71` fuel).
 
-Determine the horizontal position that the crabs can align to using the leas
+Determine the horizontal position that the crabs can align to using the least
 fuel possible. **How much fuel must they spend to align to that position?**
