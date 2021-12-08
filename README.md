@@ -45,4 +45,4 @@ mkvirtualenv advent -p $(which python3.10)
 
 ### Advent Day Answers
 
-- See [the `ANSWER_README` file](https://github.com/urda/advent-of-code/blob/master/docs/answers/README.md)
+- See [the `docs/answers/README` file](https://github.com/urda/advent-of-code/blob/master/docs/answers/README.md)
