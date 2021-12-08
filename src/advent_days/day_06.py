@@ -1,0 +1,60 @@
+from collections import Counter
+from typing import List
+
+from .day_meta import DayMeta
+
+
+class Day06(DayMeta):
+    _data_file = 'day_06.txt'
+
+    _data_delimiter = ','
+
+    @classmethod
+    def solve_day(cls) -> List[str]:
+        part_1_result = cls._perform_part_1()
+        part_2_result = cls._perform_part_2()
+
+        return [
+            'Part 1:',
+            f'Determined: {part_1_result}',
+            '---',
+            'Part 2:',
+            f'Determined: {part_2_result}',
+        ]
+
+    @classmethod
+    def _get_raw_data(cls) -> List[int]:
+        with open(cls.build_data_file_path(cls._data_file), 'r') as data_file:
+            raw_data_line = data_file.readline().strip()
+
+        return [int(x) for x in raw_data_line.split(cls._data_delimiter)]
+
+    @classmethod
+    def _perform_part_1(cls) -> int:
+        fish_data = cls._get_raw_data()
+        return cls._perform_work(fish_data, 80)
+
+    @classmethod
+    def _perform_part_2(cls) -> int:
+        fish_data = cls._get_raw_data()
+        return cls._perform_work(fish_data, 256)
+
+    @classmethod
+    def _cycle_fish(cls, fish_buckets):
+        day_zero_fish = fish_buckets[0]
+        fish = fish_buckets[1:]
+        fish.append(day_zero_fish)
+        fish[6] += day_zero_fish
+        return fish
+
+    @classmethod
+    def _perform_work(cls, fish_data: List[int], day_limit: int) -> int:
+        fish_buckets = [0] * 9
+        for key, value in Counter(fish_data).items():
+            fish_buckets[key] = value
+
+        for _ in range(day_limit):
+            new_fish_buckets = cls._cycle_fish(fish_buckets)
+            fish_buckets = new_fish_buckets[:]
+
+        return sum(fish_buckets)
