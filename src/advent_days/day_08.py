@@ -39,9 +39,8 @@ class Day08(DayMeta):
     @classmethod
     def _perform_part_1(cls, split_raw_data: List[Tuple[str, str]]) -> int:
         output_counter = Counter([])
-        for raw_data_entry in split_raw_data:
-            output_digits = raw_data_entry[1].split()
-            output_counter += cls._count_part_1_values(output_digits)
+        for _, output_digits in split_raw_data:
+            output_counter += cls._count_part_1_values(output_digits.split())
         output_results = dict(output_counter.items())
 
         # 1: 2 Segments, 4: 4 Segments, 7: 3 Segments, 8: 7 Segments
