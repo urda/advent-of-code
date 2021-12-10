@@ -31,7 +31,11 @@ run: # Run the CLI App
 
 .PHONY: lint
 lint: # Run linting
+lint: flake8
 lint: pycodestyle
+
+flake8:
+	flake8 -v
 
 pycodestyle:
 	pycodestyle --verbose ./src/
