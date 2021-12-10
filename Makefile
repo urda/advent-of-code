@@ -2,7 +2,9 @@
 # Variables
 ########################################################################################################################
 
-PYTHON_PATH = ./src/
+PYTHON_PATH = ./src
+
+PYLINT_PATH = $(PYTHON_PATH)/main.py $(PYTHON_PATH)/advent_utils
 
 ########################################################################################################################
 # `make help` Needs to be first so it is ran when just `make` is called
@@ -41,7 +43,7 @@ pycodestyle:
 	pycodestyle --verbose ./src/
 
 pylint:
-	pylint --output-format=text --rcfile=./.pylintrc ./src/main.py
+	pylint --output-format=text --rcfile=./.pylintrc $(PYLINT_PATH)
 
 ########################################################################################################################
 

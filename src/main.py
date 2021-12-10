@@ -35,7 +35,7 @@ if __name__ == '__main__':
     lookups = build_menu_lookups(menu_options)
 
     while True:
-        print_menu(menu_options)
+        print_menu(len(menu_options))
 
         menu_option_raw_input = input('Enter day selection: ')
 
