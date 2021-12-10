@@ -4,7 +4,7 @@
 
 PYTHON_PATH = ./src
 
-PYLINT_PATH = $(PYTHON_PATH)/main.py $(PYTHON_PATH)/advent_utils
+PYLINT_PATH = $(PYTHON_PATH)/main.py $(PYTHON_PATH)/advent_days $(PYTHON_PATH)/advent_utils
 
 ########################################################################################################################
 # `make help` Needs to be first so it is ran when just `make` is called

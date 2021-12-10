@@ -1,3 +1,19 @@
+"""
+Copyright 2021 Peter Urda
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+"""
+
 from enum import Enum
 from typing import List
 
@@ -5,11 +21,18 @@ from .day_meta import DayMeta
 
 
 class LifeSupportFilterMode(Enum):
+    """
+    Enum to flip between filter modes
+    """
     CO2 = 'CO2'
     O2 = 'O2'
 
 
 class Day03(DayMeta):
+    """
+    Advent Day 03
+    """
+
     _binary_value_length = 12
     _data_file = 'day_03.txt'
 
@@ -33,7 +56,11 @@ class Day03(DayMeta):
     @classmethod
     def _get_lines(cls) -> List[List[int]]:
         lines = []
-        with open(cls.build_data_file_path(cls._data_file), 'r') as data_file:
+        with open(
+                cls.build_data_file_path(cls._data_file),
+                'r',
+                encoding='utf-8',
+        ) as data_file:
             for line in data_file:
                 # Strip new line element, convert to ints
                 lines.append([int(i) for i in list(line)[:-1]])

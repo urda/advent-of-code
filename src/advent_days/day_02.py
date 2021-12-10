@@ -1,9 +1,29 @@
+"""
+Copyright 2021 Peter Urda
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+"""
+
 from typing import List
 
 from .day_meta import DayMeta
 
 
 class Day02(DayMeta):
+    """
+    Advent Day 02
+    """
+
     _data_file = 'day_02.txt'
 
     @classmethod
@@ -26,7 +46,11 @@ class Day02(DayMeta):
     @classmethod
     def _get_lines(cls) -> List[str]:
         lines = []
-        with open(cls.build_data_file_path(cls._data_file), 'r') as data_file:
+        with open(
+                cls.build_data_file_path(cls._data_file),
+                'r',
+                encoding='utf-8',
+        ) as data_file:
             for line in data_file:
                 lines.append(line)
         return lines

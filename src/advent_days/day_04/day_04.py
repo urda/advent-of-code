@@ -1,3 +1,19 @@
+"""
+Copyright 2021 Peter Urda
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+"""
+
 from typing import (
     List,
     Tuple,
@@ -8,6 +24,10 @@ from ..day_meta import DayMeta
 
 
 class Day04(DayMeta):
+    """
+    Advent Day 04
+    """
+
     _board_fixed_column_count = 15
     _board_fixed_row_count = 5
     _data_file = 'day_04.txt'
@@ -37,7 +57,11 @@ class Day04(DayMeta):
     def _get_boards(cls) -> list[GameBoard]:
         results = []
 
-        with open(cls.build_data_file_path(cls._data_file), 'r') as data_file:
+        with open(
+                cls.build_data_file_path(cls._data_file),
+                'r',
+                encoding='utf-8',
+        ) as data_file:
             new_board_rows = []
             for line in data_file:
                 # Skip any lines that do not look like board lines
@@ -56,7 +80,11 @@ class Day04(DayMeta):
 
     @classmethod
     def _get_draw_order(cls) -> List[int]:
-        with open(cls.build_data_file_path(cls._data_file), 'r') as data_file:
+        with open(
+                cls.build_data_file_path(cls._data_file),
+                'r',
+                encoding='utf-8',
+        ) as data_file:
             str_data = data_file.readline().split(cls._header_delimiter)
             return [int(x) for x in str_data]
 
@@ -94,7 +122,7 @@ class Day04(DayMeta):
                     last_seen_result = possible_result
                     finished_board_indexes.add(board_idx)
 
-        if last_seen_board:
-            return last_seen_result
-        else:
+        if not last_seen_board:
             raise cls._failure_exception
+
+        return last_seen_result

@@ -1,3 +1,19 @@
+"""
+Copyright 2021 Peter Urda
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+"""
+
 import sys
 from collections import Counter
 from functools import lru_cache
@@ -10,6 +26,10 @@ from .day_meta import DayMeta
 
 
 class Day07(DayMeta):
+    """
+    Advent Day 07
+    """
+
     _data_file = 'day_07.txt'
 
     _data_delimiter = ','
@@ -37,7 +57,11 @@ class Day07(DayMeta):
 
     @classmethod
     def _get_raw_data(cls) -> List[int]:
-        with open(cls.build_data_file_path(cls._data_file), 'r') as data_file:
+        with open(
+                cls.build_data_file_path(cls._data_file),
+                'r',
+                encoding='utf-8',
+        ) as data_file:
             raw_data_line = data_file.readline().strip()
 
         return [int(x) for x in raw_data_line.split(cls._data_delimiter)]
@@ -57,6 +81,7 @@ class Day07(DayMeta):
         min_fuel_seen = sys.maxsize
         alignment_result = None
 
+        # pylint: disable=invalid-name
         for x in range(min_value, max_value + 1):
             total_fuel_spent = 0
             for crabs in crab_counter.items():
