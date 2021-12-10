@@ -25,6 +25,19 @@ clean: # Clean project files
 run: # Run the CLI App
 	./src/main.py
 
+########################################################################################################################
+
+# Linting Tools
+
+.PHONY: lint
+lint: # Run linting
+lint: pycodestyle
+
+pycodestyle:
+	pycodestyle --verbose ./src/
+
+########################################################################################################################
+
 .PHONY: test
 test: # Run tests
 	PYTHONPATH=$(PYTHON_PATH) pytest ./tests/
