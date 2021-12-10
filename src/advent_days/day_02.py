@@ -44,20 +44,8 @@ class Day02(DayMeta):
         ]
 
     @classmethod
-    def _get_lines(cls) -> List[str]:
-        lines = []
-        with open(
-                cls.build_data_file_path(cls._data_file),
-                'r',
-                encoding='utf-8',
-        ) as data_file:
-            for line in data_file:
-                lines.append(line)
-        return lines
-
-    @classmethod
     def _perform_part_1(cls) -> (int, int):
-        commands = cls._get_lines()
+        commands = cls.get_lines_as_list_string(cls._data_file)
 
         horizontal_pos = 0
         depth_pos = 0
@@ -81,7 +69,7 @@ class Day02(DayMeta):
 
     @classmethod
     def _perform_part_2(cls):
-        commands = cls._get_lines()
+        commands = cls.get_lines_as_list_string(cls._data_file)
 
         horizontal_pos = 0
         depth_pos = 0

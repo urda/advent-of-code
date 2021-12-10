@@ -36,10 +36,12 @@ class Day05(DayMeta):
 
     @classmethod
     def solve_day(cls) -> List[str]:
-        part_1_lines, part_1_dimensions = cls._filter_part_1(cls._get_lines())
+        part_1_lines, part_1_dimensions = \
+            cls._filter_part_1(cls.get_lines_as_list_string(cls._data_file))
         part_1_sum = cls._perform_part_1(part_1_lines, part_1_dimensions)
 
-        part_2_lines, part_2_dimensions = cls._filter_part_2(cls._get_lines())
+        part_2_lines, part_2_dimensions = \
+            cls._filter_part_2(cls.get_lines_as_list_string(cls._data_file))
         part_2_sum = cls._perform_part_2(part_2_lines, part_2_dimensions)
 
         return [
@@ -67,18 +69,6 @@ class Day05(DayMeta):
         point_b_x, point_b_y = int(point_b_x_raw), int(point_b_y_raw)
 
         return VentPoint(point_a_x, point_a_y), VentPoint(point_b_x, point_b_y)
-
-    @classmethod
-    def _get_lines(cls) -> List[str]:
-        lines = []
-        with open(
-                cls.build_data_file_path(cls._data_file),
-                'r',
-                encoding='utf-8',
-        ) as data_file:
-            for line in data_file:
-                lines.append(line)
-        return lines
 
     @classmethod
     def _perform_part_1(

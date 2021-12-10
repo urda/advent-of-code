@@ -35,6 +35,7 @@ run: # Run the CLI App
 lint: # Run linting
 lint: flake8
 lint: pycodestyle
+lint: pylint
 
 flake8:
 	flake8 -v

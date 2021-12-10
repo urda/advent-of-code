@@ -34,7 +34,7 @@ class Day08(DayMeta):
 
     @classmethod
     def solve_day(cls) -> List[str]:
-        raw_data = cls._get_raw_data()
+        raw_data = cls.get_lines_as_list_string(cls._data_file)
         split_raw_data = cls._split_raw_data(raw_data)
 
         part_1_result = cls._perform_part_1(split_raw_data)
@@ -50,15 +50,6 @@ class Day08(DayMeta):
         for output_value in output_values:
             results.append(len(set(output_value)))
         return Counter(results)
-
-    @classmethod
-    def _get_raw_data(cls) -> List[str]:
-        with open(
-                cls.build_data_file_path(cls._data_file),
-                'r',
-                encoding='utf-8',
-        ) as data_file:
-            return data_file.readlines()
 
     @classmethod
     def _perform_part_1(cls, split_raw_data: List[Tuple[str, str]]) -> int:

@@ -56,27 +56,18 @@ class Day07(DayMeta):
         return fuel
 
     @classmethod
-    def _get_raw_data(cls) -> List[int]:
-        with open(
-                cls.build_data_file_path(cls._data_file),
-                'r',
-                encoding='utf-8',
-        ) as data_file:
-            raw_data_line = data_file.readline().strip()
-
-        return [int(x) for x in raw_data_line.split(cls._data_delimiter)]
-
-    @classmethod
     def _perform_work(
             cls,
             complex_fuel_spend: bool = False
     ) -> Tuple[int, int]:
-        raw_crabs = cls._get_raw_data()
+        raw_crabs = cls.get_csv_line_as_integer_list(cls._data_file)
         raw_crab_sorted = sorted(raw_crabs)
         min_value = raw_crab_sorted[0]
         max_value = raw_crab_sorted[-1]
 
-        crab_counter = Counter(cls._get_raw_data())
+        crab_counter = Counter(
+            cls.get_csv_line_as_integer_list(cls._data_file)
+        )
 
         min_fuel_seen = sys.maxsize
         alignment_result = None

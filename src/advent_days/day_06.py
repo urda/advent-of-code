@@ -27,8 +27,6 @@ class Day06(DayMeta):
 
     _data_file = 'day_06.txt'
 
-    _data_delimiter = ','
-
     @classmethod
     def solve_day(cls) -> List[str]:
         part_1_result = cls._perform_part_1()
@@ -36,31 +34,20 @@ class Day06(DayMeta):
 
         return [
             'Part 1:',
-            f'Determined: {part_1_result}',
+            f'Determined fish population: {part_1_result}',
             '---',
             'Part 2:',
-            f'Determined: {part_2_result}',
+            f'Determined fish population: {part_2_result}',
         ]
 
     @classmethod
-    def _get_raw_data(cls) -> List[int]:
-        with open(
-                cls.build_data_file_path(cls._data_file),
-                'r',
-                encoding='utf-8',
-        ) as data_file:
-            raw_data_line = data_file.readline().strip()
-
-        return [int(x) for x in raw_data_line.split(cls._data_delimiter)]
-
-    @classmethod
     def _perform_part_1(cls) -> int:
-        fish_data = cls._get_raw_data()
+        fish_data = cls.get_csv_line_as_integer_list(cls._data_file)
         return cls._perform_work(fish_data, 80)
 
     @classmethod
     def _perform_part_2(cls) -> int:
-        fish_data = cls._get_raw_data()
+        fish_data = cls.get_csv_line_as_integer_list(cls._data_file)
         return cls._perform_work(fish_data, 256)
 
     @classmethod

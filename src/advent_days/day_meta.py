@@ -40,6 +40,38 @@ class DayMeta(ABC):
         return Path(meta_dir, f'data/{data_file_name}')
 
     @classmethod
+    def get_csv_line_as_integer_list(cls, data_file_name: str) -> List[int]:
+        """
+        Given a data file name, read out the first line from it as a string
+        of CSV entries of integers.
+
+        :param data_file_name: The data file to lookup in the project.
+        :return: A Python list of integers from the line of CSV values.
+        """
+        data_path = cls.build_data_file_path(data_file_name)
+        with open(data_path, 'r', encoding='utf-8') as data_file:
+            raw_data_line = data_file.readline().strip()
+
+        return [int(x) for x in raw_data_line.split(',')]
+
+    @classmethod
+    def get_lines_as_list_string(cls, data_file_name: str) -> List[str]:
+        """
+        Given a data file name, read out the lines from it into a Python
+        list of strings.
+
+        :param data_file_name: The data file to lookup in the project.
+        :return: A Python list of strings of each line.
+        """
+        data_path = cls.build_data_file_path(data_file_name)
+
+        lines = []
+        with open(data_path, 'r', encoding='utf-8') as data_file:
+            for line in data_file:
+                lines.append(line)
+        return lines
+
+    @classmethod
     @abstractmethod
     def solve_day(cls) -> List[str]:
         """
