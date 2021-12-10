@@ -9,9 +9,12 @@ class Day01(DayMeta):
 
     @classmethod
     def solve_day(cls) -> List[str]:
+        part_1_answer = cls.compute_part_1(cls._get_lines())
+        part_2_answer = cls.compute_part_2(cls._get_lines())
+
         return [
-            f'Part 01 Determined: {cls._perform_part_1()}',
-            f'Part 02 Determined: {cls._perform_part_2()}',
+            f'Part 01 Determined: {part_1_answer}',
+            f'Part 02 Determined: {part_2_answer}',
         ]
 
     @classmethod
@@ -26,9 +29,7 @@ class Day01(DayMeta):
         return lines
 
     @classmethod
-    def _perform_part_1(cls) -> int:
-        lines = cls._get_lines()
-
+    def compute_part_1(cls, lines: List[int]) -> int:
         # Set the first seen value to the smallest value possible for
         # this system, then set counter to -1 so first value sets counter to 0
         increased_count = -1
@@ -42,9 +43,7 @@ class Day01(DayMeta):
         return increased_count
 
     @classmethod
-    def _perform_part_2(cls) -> int:
-        lines = cls._get_lines()
-
+    def compute_part_2(cls, lines: List[int]) -> int:
         rolling_window_size = 3
         rolling_window = []
         increased_count = -1
