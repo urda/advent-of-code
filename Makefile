@@ -40,6 +40,9 @@ flake8:
 pycodestyle:
 	pycodestyle --verbose ./src/
 
+pylint:
+	pylint --output-format=text $(PYTHON_PATH)
+
 ########################################################################################################################
 
 .PHONY: test
