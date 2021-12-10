@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+The entry point for the ADVENT OF CODE!
+"""
 
 from advent_days import (
     Day01,
@@ -29,17 +32,16 @@ menu_options = [
 
 
 if __name__ == '__main__':
-    running = True
     lookups = build_menu_lookups(menu_options)
 
-    while running:
+    while True:
         print_menu(menu_options)
 
         menu_option_raw_input = input('Enter day selection: ')
-        if menu_option_raw_input.isdigit():
-            menu_option_parsed = int(menu_option_raw_input)
-        else:
-            menu_option_parsed = None
+
+        menu_option_parsed = int(menu_option_raw_input) \
+            if menu_option_raw_input.isdigit() \
+            else None
 
         if menu_option_parsed in lookups:
             lookups.get(menu_option_parsed).solve_day_and_print()
@@ -47,6 +49,6 @@ if __name__ == '__main__':
             print()
             print('OK Bye Bye!')
             print()
-            running = False
+            break
         else:
             print('Input not understood. Try again.')

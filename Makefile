@@ -41,7 +41,7 @@ pycodestyle:
 	pycodestyle --verbose ./src/
 
 pylint:
-	pylint --output-format=text --rcfile=./.pylintrc $(PYTHON_PATH)
+	pylint --output-format=text --rcfile=./.pylintrc ./src/main.py
 
 ########################################################################################################################
 
