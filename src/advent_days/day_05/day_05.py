@@ -55,6 +55,28 @@ class Day05(DayMeta):
         ]
 
     @classmethod
+    def perform_work(
+            cls,
+            vent_data: List[str],
+            include_diagonals: bool
+    ) -> int:
+        """
+        Perform work for this Day 05. Works for both portions.
+
+        :param vent_data: The vent data as a list of strings.
+        :param include_diagonals: Set to 'True' if diagonals should be
+                                  considered.
+        :return: The number of multiple line overlap points.
+        """
+
+        vent_lines, vent_dimensions = cls._build_vent_data(vent_data)
+        vent_map = [
+            [0 for _0 in range(vent_dimensions[0])]
+            for _1 in range(vent_dimensions[1])
+        ]
+        return cls._process_vent_lines(vent_lines, vent_map, include_diagonals)
+
+    @classmethod
     def _build_line(cls, raw_data: str) -> VentLine:
         point_a, point_b = cls._build_points(raw_data)
         return VentLine(point_a, point_b)
@@ -73,20 +95,7 @@ class Day05(DayMeta):
         return VentPoint(point_a_x, point_a_y), VentPoint(point_b_x, point_b_y)
 
     @classmethod
-    def perform_work(
-            cls,
-            vent_data: List[str],
-            include_diagonals: bool
-    ) -> int:
-        vent_lines, vent_dimensions = cls._filter_part_2(vent_data)
-        vent_map = [
-            [0 for _0 in range(vent_dimensions[0])]
-            for _1 in range(vent_dimensions[1])
-        ]
-        return cls._process_vent_lines(vent_lines, vent_map, include_diagonals)
-
-    @classmethod
-    def _filter_part_2(
+    def _build_vent_data(
             cls,
             raw_data: List[str]
     ) -> Tuple[List[VentLine], Tuple[int, int]]:
