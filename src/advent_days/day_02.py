@@ -50,6 +50,13 @@ class Day02(DayMeta):
 
     @classmethod
     def perform_part_1(cls, commands: List[str]) -> Tuple[int, int]:
+        """
+        Compute the answer to part 1 for Day 02.
+
+        :param commands: The commands to process as a list of strings.
+        :return: The result as a tuple: (horizontal position, depth position)
+        """
+
         horizontal_pos = 0
         depth_pos = 0
 
@@ -72,6 +79,13 @@ class Day02(DayMeta):
 
     @classmethod
     def perform_part_2(cls, commands: List[str]) -> Tuple[int, int]:
+        """
+        Compute the answer to part 2 for Day 02.
+
+        :param commands: The commands to process as a list of strings.
+        :return: The result as a tuple: (horizontal position, depth position)
+        """
+
         horizontal_pos = 0
         depth_pos = 0
         aim_value = 0
