@@ -33,13 +33,15 @@ class Day04(DayMeta):
     _data_file = 'day_04.txt'
     _header_delimiter = ','
 
-    _failure_exception = \
+    _failure_exception: ValueError = \
         ValueError('Unable to find a winning board, something is wrong.')
 
     @classmethod
     def solve_day(cls) -> List[str]:
-        part_1_sum, part_1_drawn = cls._perform_part_1()
-        part_2_sum, part_2_drawn = cls._perform_part_2()
+        part_1_sum, part_1_drawn = cls.perform_part_1(cls._get_boards(),
+                                                      cls._get_draw_order())
+        part_2_sum, part_2_drawn = cls.perform_part_2(cls._get_boards(),
+                                                      cls._get_draw_order())
 
         return [
             'Part 1:',
@@ -89,10 +91,18 @@ class Day04(DayMeta):
             return [int(x) for x in str_data]
 
     @classmethod
-    def _perform_part_1(cls) -> Tuple[int, int]:
-        boards = cls._get_boards()
-        draw_order = cls._get_draw_order()
+    def perform_part_1(
+            cls,
+            boards: List[GameBoard],
+            draw_order: List[int],
+    ) -> Tuple[int, int]:
+        """
+        Compute the answer to part 1 for Day 04.
 
+        :param boards: The boards to process for this portion.
+        :param draw_order: The draw order running against the boards.
+        :return: Tuple of (unmarked sum, value drawn) for winner.
+        """
         for value_to_report in draw_order:
             for board in boards:
                 possible_result = board.report_drawn_value(value_to_report)
@@ -103,9 +113,18 @@ class Day04(DayMeta):
         raise cls._failure_exception
 
     @classmethod
-    def _perform_part_2(cls) -> Tuple[int, int]:
-        boards = cls._get_boards()
-        draw_order = cls._get_draw_order()
+    def perform_part_2(
+            cls,
+            boards: List[GameBoard],
+            draw_order: List[int],
+    ) -> Tuple[int, int]:
+        """
+        Compute the answer to part 2 for Day 04.
+
+        :param boards: The boards to process for this portion.
+        :param draw_order: The draw order running against the boards.
+        :return: Tuple of (unmarked sum, value drawn) for the squid winner.
+        """
         finished_board_indexes = set()
         last_seen_board = None
         last_seen_result = None
