@@ -10,10 +10,37 @@ https://adventofcode.com/2021
 - PyCharm 2021.3 (Professional Edition)
 - Python 3.10
 
+## Python Libraries in Use
+
+Versions are tracked in their respective `requirements` file.
+
+- [`flake8`](https://pypi.org/project/flake8/)
+- [`pycodestyle`](https://pypi.org/project/pycodestyle/)
+- [`pylint`](https://pypi.org/project/pylint/)
+- [`pytest`](https://pypi.org/project/pytest/)
+
+### Python Libraries in Use for Development
+
+- [`ipython`](https://pypi.org/project/ipython/)
+
+## Environment Setup
+
 Use a virtual environment as such:
 
 ```bash
 mkvirtualenv advent -p $(which python3.10)
+```
+
+Switch to it:
+
+```bash
+workon advent
+```
+
+And install the development environment:
+
+```bash
+pip install -r requirements-dev.txt
 ```
 
 ## Advent Days

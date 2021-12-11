@@ -1,5 +1,4 @@
-flake8
-ipython
-pycodestyle
-pylint
-pytest
+flake8==4.0.1
+pycodestyle==2.8.0
+pylint==2.12.2
+pytest==6.2.5
