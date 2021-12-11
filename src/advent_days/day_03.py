@@ -15,7 +15,10 @@ limitations under the License.
 """
 
 from enum import Enum
-from typing import List
+from typing import (
+    List,
+    Tuple,
+)
 
 from .day_meta import DayMeta
 
@@ -33,13 +36,12 @@ class Day03(DayMeta):
     Advent Day 03
     """
 
-    _binary_value_length = 12
     _data_file = 'day_03.txt'
 
     @classmethod
     def solve_day(cls) -> List[str]:
-        part_1_gamma, part_1_epsilon = cls._perform_part_1()
-        part_2_o2, part_2_co2 = cls._perform_part_2()
+        part_1_gamma, part_1_epsilon = cls.perform_part_1(cls._get_lines())
+        part_2_o2, part_2_co2 = cls.perform_part_2(cls._get_lines())
 
         return [
             'Part 1:',
@@ -67,14 +69,25 @@ class Day03(DayMeta):
         return lines
 
     @classmethod
-    def _perform_part_1(cls) -> (int, int):
-        binary_values = cls._get_lines()
+    def perform_part_1(
+            cls,
+            binary_values: List[List[int]]
+    ) -> Tuple[int, int]:
+        """
+        Compute the answer to part 1 for Day 03.
+
+        :param binary_values: The values to process for the day.
+        :return: The results as a tuple: (Gamma Rate, Epsilon Rate)
+        """
 
         # Configure result storage list
-        parse_results = [0] * cls._binary_value_length
+        parse_results = None
 
         # Given each entry from input, examine each bit position and record
         for binary_data in binary_values:
+            if not parse_results:
+                parse_results = [0] * len(binary_data)
+
             for idx, bit_value in enumerate(binary_data):
                 if bit_value == 1:
                     parse_results[idx] += 1
@@ -99,12 +112,13 @@ class Day03(DayMeta):
     @classmethod
     def _compute_life_support_value(
             cls,
+            binary_values: List[List[int]],
             life_support: LifeSupportFilterMode
     ) -> List[int]:
         result = None
-        binary_values = cls._get_lines()
+        binary_length = len(binary_values[0])
 
-        for idx in range(cls._binary_value_length):
+        for idx in range(binary_length):
             seen_zeros = 0
             seen_ones = 0
             for binary_data in binary_values:
@@ -143,11 +157,19 @@ class Day03(DayMeta):
         return result
 
     @classmethod
-    def _perform_part_2(cls) -> (int, int):
+    def perform_part_2(cls, binary_values: List[List[int]]) -> Tuple[int, int]:
+        """
+        Compute the answer to part 2 for Day 03.
+
+        :param binary_values: The values to process for the day.
+        :return: The results as a tuple: (O2 Result, CO2 Result)
+        """
         o2_gen_value = \
-            cls._compute_life_support_value(LifeSupportFilterMode.O2)
+            cls._compute_life_support_value(binary_values,
+                                            LifeSupportFilterMode.O2)
         co2_gen_value = \
-            cls._compute_life_support_value(LifeSupportFilterMode.CO2)
+            cls._compute_life_support_value(binary_values,
+                                            LifeSupportFilterMode.CO2)
 
         o2_result = \
             int(''.join(str(bit) for bit in o2_gen_value), 2)
