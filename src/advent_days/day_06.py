@@ -29,8 +29,14 @@ class Day06(DayMeta):
 
     @classmethod
     def solve_day(cls) -> List[str]:
-        part_1_result = cls._perform_part_1()
-        part_2_result = cls._perform_part_2()
+        part_1_result = cls.perform_work(
+            cls.get_csv_line_as_integer_list(cls._data_file),
+            80,
+        )
+        part_2_result = cls.perform_work(
+            cls.get_csv_line_as_integer_list(cls._data_file),
+            256,
+        )
 
         return [
             'Part 1:',
@@ -39,16 +45,6 @@ class Day06(DayMeta):
             'Part 2:',
             f'Determined fish population: {part_2_result}',
         ]
-
-    @classmethod
-    def _perform_part_1(cls) -> int:
-        fish_data = cls.get_csv_line_as_integer_list(cls._data_file)
-        return cls._perform_work(fish_data, 80)
-
-    @classmethod
-    def _perform_part_2(cls) -> int:
-        fish_data = cls.get_csv_line_as_integer_list(cls._data_file)
-        return cls._perform_work(fish_data, 256)
 
     @classmethod
     def _cycle_fish(cls, fish_buckets):
@@ -63,7 +59,14 @@ class Day06(DayMeta):
         return fish
 
     @classmethod
-    def _perform_work(cls, fish_data: List[int], day_limit: int) -> int:
+    def perform_work(cls, fish_data: List[int], day_limit: int) -> int:
+        """
+        Perform the work for this day's advent challenge.
+
+        :param fish_data: The fish data from the challenge.
+        :param day_limit: The number of days to compute.
+        :return: The number of fish in the simulation.
+        """
         fish_buckets = [0] * 9
         for key, value in Counter(fish_data).items():
             fish_buckets[key] = value
