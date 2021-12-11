@@ -50,4 +50,4 @@ pylint:
 
 .PHONY: test
 test: # Run tests
-	PYTHONPATH=$(PYTHON_PATH) pytest ./tests/
+	PYTHONPATH=$(PYTHON_PATH) pytest --verbose ./tests/
