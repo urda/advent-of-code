@@ -14,7 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from typing import List
+from typing import (
+    List,
+    Tuple,
+)
 
 from .day_meta import DayMeta
 
@@ -28,8 +31,10 @@ class Day02(DayMeta):
 
     @classmethod
     def solve_day(cls) -> List[str]:
-        part_1_horizontal_pos, part_1_depth_pos = cls._perform_part_1()
-        part_2_horizontal_pos, part_2_depth_pos = cls._perform_part_2()
+        commands = cls.get_lines_as_list_string(cls._data_file)
+
+        part_1_horizontal_pos, part_1_depth_pos = cls.perform_part_1(commands)
+        part_2_horizontal_pos, part_2_depth_pos = cls.perform_part_2(commands)
 
         return [
             'Part 1:',
@@ -44,9 +49,7 @@ class Day02(DayMeta):
         ]
 
     @classmethod
-    def _perform_part_1(cls) -> (int, int):
-        commands = cls.get_lines_as_list_string(cls._data_file)
-
+    def perform_part_1(cls, commands: List[str]) -> Tuple[int, int]:
         horizontal_pos = 0
         depth_pos = 0
 
@@ -68,9 +71,7 @@ class Day02(DayMeta):
         return horizontal_pos, depth_pos
 
     @classmethod
-    def _perform_part_2(cls):
-        commands = cls.get_lines_as_list_string(cls._data_file)
-
+    def perform_part_2(cls, commands: List[str]) -> Tuple[int, int]:
         horizontal_pos = 0
         depth_pos = 0
         aim_value = 0
