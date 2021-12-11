@@ -36,13 +36,15 @@ class Day05(DayMeta):
 
     @classmethod
     def solve_day(cls) -> List[str]:
-        part_1_lines, part_1_dimensions = \
-            cls._filter_part_1(cls.get_lines_as_list_string(cls._data_file))
-        part_1_sum = cls._perform_part_1(part_1_lines, part_1_dimensions)
+        part_1_sum = cls.perform_work(
+            cls.get_lines_as_list_string(cls._data_file),
+            False,
+        )
 
-        part_2_lines, part_2_dimensions = \
-            cls._filter_part_2(cls.get_lines_as_list_string(cls._data_file))
-        part_2_sum = cls._perform_part_2(part_2_lines, part_2_dimensions)
+        part_2_sum = cls.perform_work(
+            cls.get_lines_as_list_string(cls._data_file),
+            True,
+        )
 
         return [
             'Part 1:',
@@ -71,63 +73,17 @@ class Day05(DayMeta):
         return VentPoint(point_a_x, point_a_y), VentPoint(point_b_x, point_b_y)
 
     @classmethod
-    def _perform_part_1(
+    def perform_work(
             cls,
-            vent_lines: List[VentLine],
-            map_dimensions: Tuple[int, int]
+            vent_data: List[str],
+            include_diagonals: bool
     ) -> int:
+        vent_lines, vent_dimensions = cls._filter_part_2(vent_data)
         vent_map = [
-            [0 for x in range(map_dimensions[0])]
-            for _ in range(map_dimensions[1])
+            [0 for _0 in range(vent_dimensions[0])]
+            for _1 in range(vent_dimensions[1])
         ]
-
-        return cls._process_vent_lines(vent_lines, vent_map, False)
-
-    @classmethod
-    def _perform_part_2(
-            cls,
-            vent_lines: List[VentLine],
-            map_dimensions: Tuple[int, int]
-    ) -> int:
-        vent_map = [
-            [0 for x in range(map_dimensions[0])]
-            for _ in range(map_dimensions[1])
-        ]
-
-        return cls._process_vent_lines(vent_lines, vent_map, True)
-
-    @classmethod
-    def _filter_part_1(
-            cls,
-            raw_data: List[str]
-    ) -> Tuple[List[VentLine], Tuple[int, int]]:
-        results = []
-        largest_x = -1
-        largest_y = -1
-
-        for line_entry_raw in raw_data:
-            point_a, point_b = cls._build_points(line_entry_raw)
-            point_a_x, point_a_y = point_a.x, point_a.y
-            point_b_x, point_b_y = point_b.x, point_b.y
-
-            if (point_a_x == point_b_x) or (point_a_y == point_b_y):
-                # Record the points and line
-                line_point_a = VentPoint(point_a_x, point_a_y)
-                line_point_b = VentPoint(point_b_x, point_b_y)
-                vent_line = VentLine(line_point_a, line_point_b)
-                results.append(vent_line)
-
-                # Update our map details
-                if point_a_x > largest_x or point_b_x > largest_x:
-                    largest_x = point_a_x \
-                        if point_a_x > largest_x else \
-                        point_b_x
-                if point_a_y > largest_y or point_b_y > largest_y:
-                    largest_y = point_a_y \
-                        if point_a_y > largest_y else \
-                        point_b_y
-
-        return results, (largest_x + 1, largest_y + 1)
+        return cls._process_vent_lines(vent_lines, vent_map, include_diagonals)
 
     @classmethod
     def _filter_part_2(
