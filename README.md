@@ -18,6 +18,7 @@ Versions are tracked in their respective `requirements` file.
 - [`pycodestyle`](https://pypi.org/project/pycodestyle/)
 - [`pylint`](https://pypi.org/project/pylint/)
 - [`pytest`](https://pypi.org/project/pytest/)
+- [`pytest-cov`](https://pypi.org/project/pytest-cov/)
 
 ### Python Libraries in Use for Development
 

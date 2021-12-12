@@ -1,7 +1,12 @@
 ### Project ###
+
 /docs/answers/answer_day_*.md
 
 ### Python ###
+
 __pycache__/
 .pytest_cache/
 *.py[cod]
+
+### Python Testing ###
+.coverage

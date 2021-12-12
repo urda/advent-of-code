@@ -2,7 +2,10 @@
 # Variables
 ########################################################################################################################
 
+CLEAN_TARGETS = .coverage
 PYTHON_PATH = ./src
+
+# Composite Variables
 
 PYLINT_PATH = $(PYTHON_PATH)/main.py $(PYTHON_PATH)/advent_days $(PYTHON_PATH)/advent_utils
 
@@ -18,6 +21,7 @@ help: # Show this help screen
 
 .PHONY: clean
 clean: # Clean project files
+	rm -rf $(CLEAN_TARGETS) && \
 	find . | grep -E "(.pytest_cache|__pycache__|\.pyc|\.pyo$$)" | xargs rm -rf && \
 	:
 
@@ -50,4 +54,4 @@ pylint:
 
 .PHONY: test
 test: # Run tests
-	PYTHONPATH=$(PYTHON_PATH) pytest --verbose ./tests/
+	PYTHONPATH=$(PYTHON_PATH) pytest --verbose --cov=advent_days --cov=advent_utils ./tests/
