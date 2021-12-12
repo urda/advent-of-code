@@ -36,8 +36,12 @@ class Day07(DayMeta):
 
     @classmethod
     def solve_day(cls) -> List[str]:
-        part_1_result = cls._perform_work(False)[0]
-        part_2_result = cls._perform_work(True)[0]
+        part_1_result = \
+            cls.perform_work(cls.get_csv_line_as_integer_list(cls._data_file),
+                             False)[0]
+        part_2_result = \
+            cls.perform_work(cls.get_csv_line_as_integer_list(cls._data_file),
+                             True)[0]
 
         return [
             'Part 1:',
@@ -49,25 +53,43 @@ class Day07(DayMeta):
 
     @classmethod
     @lru_cache(maxsize=None)
-    def _compute_complex_fuel(cls, distance_to_cover) -> int:
+    def get_complex_fuel_usage(cls, distance_to_cover: int) -> int:
+        """
+        Compute the complex fuel requirements.
+
+        As it turns out, crab submarine engines don't burn fuel at a constant
+        rate. Instead, each change of 1 step in horizontal position costs 1
+        more unit of fuel than the last: the first step costs 1, the second
+        step costs 2, the third step costs 3, and so on.
+
+        :param distance_to_cover: The distance the crab sub covers.
+        :return: The fuel used to cover that distance.
+        """
         fuel = 0
         for offset in range(1, distance_to_cover + 1):
             fuel += offset
         return fuel
 
     @classmethod
-    def _perform_work(
+    def perform_work(
             cls,
+            raw_crabs: List[int],
             complex_fuel_spend: bool = False
     ) -> Tuple[int, int]:
-        raw_crabs = cls.get_csv_line_as_integer_list(cls._data_file)
+        """
+        Perform work needed to get the crab subs aligned and get the answer.
+
+        :param raw_crabs: The crab subs to align with.
+        :param complex_fuel_spend: Set to 'True' if computation should use the
+                                   more-complex fuel calculations.
+        :return: A tuple with two values: (fuel spent, alignment level)
+        """
+
         raw_crab_sorted = sorted(raw_crabs)
         min_value = raw_crab_sorted[0]
         max_value = raw_crab_sorted[-1]
 
-        crab_counter = Counter(
-            cls.get_csv_line_as_integer_list(cls._data_file)
-        )
+        crab_counter = Counter(raw_crab_sorted)
 
         min_fuel_seen = sys.maxsize
         alignment_result = None
@@ -79,7 +101,7 @@ class Day07(DayMeta):
                 if complex_fuel_spend:
                     fuel_distance = abs(crabs[0] - x)
                     fuel_spent_for_all = \
-                        cls._compute_complex_fuel(fuel_distance) * crabs[1]
+                        cls.get_complex_fuel_usage(fuel_distance) * crabs[1]
                     total_fuel_spent += fuel_spent_for_all
                 else:
                     fuel_spent = abs(crabs[0] - x)
