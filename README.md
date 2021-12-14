@@ -73,6 +73,9 @@ pip install -r requirements-dev.txt
 - Day 09
   - [Docs](https://github.com/urda/advent-of-code/blob/master/docs/day_09.md)
   - [Code](https://github.com/urda/advent-of-code/tree/master/src/advent_days/day_09.py)
+- Day 10
+  - [Docs](https://github.com/urda/advent-of-code/blob/master/docs/day_10.md)
+  - [Code](https://github.com/urda/advent-of-code/tree/master/src/advent_days/day_10.py)
 
 ### Advent Day Answers
 
