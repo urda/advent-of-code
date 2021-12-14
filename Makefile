@@ -2,7 +2,7 @@
 # Variables
 ########################################################################################################################
 
-CLEAN_TARGETS = .coverage
+CLEAN_TARGETS = ./htmlcov .coverage
 PYTHON_PATH = ./src
 
 # Composite Variables
