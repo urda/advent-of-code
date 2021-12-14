@@ -40,8 +40,12 @@ class Day03(DayMeta):
 
     @classmethod
     def solve_day(cls) -> List[str]:
-        part_1_gamma, part_1_epsilon = cls.perform_part_1(cls._get_lines())
-        part_2_o2, part_2_co2 = cls.perform_part_2(cls._get_lines())
+        part_1_gamma, part_1_epsilon = cls.perform_part_1(
+            cls.get_lines_as_list_of_integer_lists(cls._data_file)
+        )
+        part_2_o2, part_2_co2 = cls.perform_part_2(
+            cls.get_lines_as_list_of_integer_lists(cls._data_file)
+        )
 
         return [
             'Part 1:',
@@ -54,19 +58,6 @@ class Day03(DayMeta):
             f'Determined CO2: {part_2_co2}',
             f'Determined: {part_2_o2 * part_2_co2}',
         ]
-
-    @classmethod
-    def _get_lines(cls) -> List[List[int]]:
-        lines = []
-        with open(
-                cls.build_data_file_path(cls._data_file),
-                'r',
-                encoding='utf-8',
-        ) as data_file:
-            for line in data_file:
-                # Strip new line element, convert to ints
-                lines.append([int(i) for i in list(line)[:-1]])
-        return lines
 
     @classmethod
     def perform_part_1(

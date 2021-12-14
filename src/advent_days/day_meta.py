@@ -72,6 +72,26 @@ class DayMeta(ABC):
         return lines
 
     @classmethod
+    def get_lines_as_list_of_integer_lists(
+            cls,
+            data_file_name: str
+    ) -> List[List[int]]:
+        """
+        Given a data file name, read out the lines from it into a python list
+        of lists of integers.
+
+        :param data_file_name: The data file to lookup in the project.
+        :return: A Python list of lists of integers of each line.
+        """
+        data_path = cls.build_data_file_path(data_file_name)
+        lines = []
+        with open(data_path, 'r', encoding='utf-8') as data_file:
+            for line in data_file:
+                # Strip new line element, convert to ints
+                lines.append([int(i) for i in list(line)[:-1]])
+        return lines
+
+    @classmethod
     @abstractmethod
     def solve_day(cls) -> List[str]:
         """
