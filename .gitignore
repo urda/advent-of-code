@@ -9,4 +9,5 @@ __pycache__/
 *.py[cod]
 
 ### Python Testing ###
+
 .coverage

@@ -54,4 +54,11 @@ pylint:
 
 .PHONY: test
 test: # Run tests
-	PYTHONPATH=$(PYTHON_PATH) pytest --verbose --cov=advent_days --cov=advent_utils ./tests/
+	PYTHONPATH=$(PYTHON_PATH) pytest \
+	--verbose \
+	--cov=advent_days \
+	--cov=advent_utils \
+	--cov-branch \
+	--cov-report=html \
+	--cov-report=term-missing \
+	./tests/
