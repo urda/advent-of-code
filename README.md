@@ -5,7 +5,7 @@ https://adventofcode.com/2021
 ## Environment and Tools in Use
 
 - git 2.34.1
-- iTerm2 3.4.14
+- iTerm2 3.4.15
 - macOS Monterey 12.0.1
 - PyCharm 2021.3 (Professional Edition)
 - Python 3.10
@@ -70,6 +70,9 @@ pip install -r requirements-dev.txt
 - Day 08
   - [Docs](https://github.com/urda/advent-of-code/blob/master/docs/day_08.md)
   - [Code](https://github.com/urda/advent-of-code/tree/master/src/advent_days/day_08.py)
+- Day 09
+  - [Docs](https://github.com/urda/advent-of-code/blob/master/docs/day_09.md)
+  - [Code](https://github.com/urda/advent-of-code/tree/master/src/advent_days/day_09.py)
 
 ### Advent Day Answers
 
