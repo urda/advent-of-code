@@ -68,7 +68,7 @@ class DayMeta(ABC):
         lines = []
         with open(data_path, 'r', encoding='utf-8') as data_file:
             for line in data_file:
-                lines.append(line)
+                lines.append(line.strip())
         return lines
 
     @classmethod
