@@ -13,6 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
+
 import copy
 from enum import Enum
 from typing import (
@@ -38,40 +39,40 @@ class Day10(DayMeta):
 
     _data_file = 'day_10.txt'
 
-    open_bracket = '['
-    open_carrot = '<'
-    open_curly = '{'
-    open_paren = '('
+    _open_bracket = '['
+    _open_carrot = '<'
+    _open_curly = '{'
+    _open_paren = '('
 
-    close_bracket = ']'
-    close_carrot = '>'
-    close_curly = '}'
-    close_paren = ')'
+    _close_bracket = ']'
+    _close_carrot = '>'
+    _close_curly = '}'
+    _close_paren = ')'
 
-    open_to_close_map = {
-        open_bracket: close_bracket,
-        open_carrot: close_carrot,
-        open_curly: close_curly,
-        open_paren: close_paren,
+    _open_to_close_map = {
+        _open_bracket: _close_bracket,
+        _open_carrot: _close_carrot,
+        _open_curly: _close_curly,
+        _open_paren: _close_paren,
     }
 
-    close_points = {
-        close_bracket: 57,
-        close_carrot: 25137,
-        close_curly: 1197,
-        close_paren: 3,
+    _close_points = {
+        _close_bracket: 57,
+        _close_carrot: 25137,
+        _close_curly: 1197,
+        _close_paren: 3,
     }
 
-    complete_points = {
-        close_bracket: 2,
-        close_carrot: 4,
-        close_curly: 3,
-        close_paren: 1,
+    _complete_points = {
+        _close_bracket: 2,
+        _close_carrot: 4,
+        _close_curly: 3,
+        _close_paren: 1,
     }
 
-    close_chars = {close_bracket, close_carrot, close_curly, close_paren}
-    open_chars = {open_bracket, open_carrot, open_curly, open_paren}
-    all_chars = close_chars.union(open_chars)
+    _close_chars = {_close_bracket, _close_carrot, _close_curly, _close_paren}
+    _open_chars = {_open_bracket, _open_carrot, _open_curly, _open_paren}
+    _all_chars = _close_chars.union(_open_chars)
 
     @classmethod
     def compute_incomplete_stack(cls, remaining_stack: List[str]) -> int:
@@ -87,7 +88,7 @@ class Day10(DayMeta):
         while len(internal_stack) > 0:
             character = internal_stack.pop()
             result = result * 5
-            result += cls.complete_points[cls.open_to_close_map[character]]
+            result += cls._complete_points[cls._open_to_close_map[character]]
 
         return result
 
@@ -140,26 +141,26 @@ class Day10(DayMeta):
         nav_data_chars = [*nav_data_line]
 
         nav_tracker = {
-            cls.open_bracket: 0,
-            cls.open_carrot: 0,
-            cls.open_curly: 0,
-            cls.open_paren: 0,
+            cls._open_bracket: 0,
+            cls._open_carrot: 0,
+            cls._open_curly: 0,
+            cls._open_paren: 0,
         }
 
         open_stack = []
         for character in nav_data_chars:
-            if character not in cls.all_chars:
+            if character not in cls._all_chars:
                 raise ValueError('Unknown character in input')
 
-            if character in cls.open_chars:
+            if character in cls._open_chars:
                 nav_tracker[character] += 1
                 open_stack.append(character)
             else:
                 last_open = open_stack.pop()
-                if character == cls.open_to_close_map[last_open]:
+                if character == cls._open_to_close_map[last_open]:
                     nav_tracker[last_open] -= 1
                 else:
-                    return cls.close_points[character], open_stack
+                    return cls._close_points[character], open_stack
 
         return 0, open_stack
 
