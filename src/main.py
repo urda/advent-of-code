@@ -14,6 +14,7 @@ from advent_days import (
     Day08,
     Day09,
     Day10,
+    Day21,
 )
 from advent_utils.menu_utils import (
     build_menu_lookups,
@@ -32,6 +33,7 @@ menu_options = [
     MenuDayOption(8, Day08),
     MenuDayOption(9, Day09),
     MenuDayOption(10, Day10),
+    MenuDayOption(21, Day21),
 ]
 
 
@@ -39,7 +41,7 @@ if __name__ == '__main__':
     lookups = build_menu_lookups(menu_options)
 
     while True:
-        print_menu(len(menu_options))
+        print_menu()
 
         menu_option_raw_input = input('Enter day selection: ')
 

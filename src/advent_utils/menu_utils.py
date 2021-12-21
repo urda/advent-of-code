@@ -37,17 +37,15 @@ def build_menu_lookups(menu_data: List[MenuDayOption]) -> Dict[int, DayMeta]:
     return results
 
 
-def print_menu(total_advent_days: int):
+def print_menu() -> None:
     """
     Given a list of MenuDayOption objects, using Python print display
-    information about the
-
-    :param total_advent_days:
-    :return:
+    information about the days available.
+    :return: None
     """
     line_br = '-' * 80
 
     print(line_br)
     print()
-    print(f'Enter an advent day 1-{total_advent_days}, or enter "0" to quit:')
+    print('Enter an advent day number, or enter "0" to quit:')
     print()
