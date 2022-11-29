@@ -22,26 +22,46 @@ Versions are tracked in their respective `requirements` file.
 - [`pytest`](https://pypi.org/project/pytest/)
 - [`pytest-cov`](https://pypi.org/project/pytest-cov/)
 
-
-
 ## Environment Setup
 
-Use a virtual environment as such:
+**The following instructions are designed around `pyenv`, `pyenv-virtualenv`.**
+
+Prepare the base python:
 
 ```bash
-mkvirtualenv advent -p $(which python3.10)
+pyenv install 3.11.0
 ```
 
-Switch to it:
+Create a python virtual environment:
 
 ```bash
-workon advent
+pyenv virtualenv 3.11.0 advent
 ```
 
-And install the development environment:
+Switch to it after creation:
+
+```bash
+pyenv shell advent
+```
+
+Go ahead and update `pip`:
+
+```bash
+pip install --upgrade pip
+```
+
+And install the development requirements:
 
 ```bash
 pip install -r requirements-dev.txt
+```
+
+## Running the "project"
+
+You can launch the `advent-of-code` project with:
+
+```bash
+make run
 ```
 
 ## Advent Days
