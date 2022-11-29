@@ -38,14 +38,10 @@ run: # Run the CLI App
 .PHONY: lint
 lint: # Run linting
 lint: flake8
-lint: pycodestyle
 lint: pylint
 
 flake8:
 	flake8 -v
-
-pycodestyle:
-	pycodestyle --verbose ./src/
 
 pylint:
 	pylint --output-format=text --rcfile=./.pylintrc $(PYLINT_PATH)

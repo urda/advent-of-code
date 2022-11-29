@@ -35,34 +35,6 @@ jobs:
       - name: Run flake8
         run: make flake8
 
-  pycodestyle:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        python-version:
-          - '3.10'
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
-
-      - name: Environment Report
-        run: |
-            echo Python Version ... $(python --version)
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip wheel
-          pip install -r requirements.txt
-
-      - name: Run pycodestyle
-        run: make pycodestyle
-
   pylint:
     runs-on: ubuntu-latest
 

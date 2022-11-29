@@ -15,7 +15,6 @@ https://adventofcode.com/2021
 Versions are tracked in their respective `requirements` file.
 
 - [`flake8`](https://pypi.org/project/flake8/)
-- [`pycodestyle`](https://pypi.org/project/pycodestyle/)
 - [`pylint`](https://pypi.org/project/pylint/)
 - [`pytest`](https://pypi.org/project/pytest/)
 - [`pytest-cov`](https://pypi.org/project/pytest-cov/)
