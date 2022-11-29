@@ -1,4 +1,4 @@
-# Advent of Code 2021 Answers
+# Advent of Code Answers
 
 ## Encrypting (for storing in `git`):
 
