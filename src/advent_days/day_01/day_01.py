@@ -20,26 +20,47 @@ from ..day_meta import DayMeta
 
 
 class Day01(DayMeta):
+    """
+    Advent of Code 2022, Day 01
+    """
+
+    @classmethod
+    def _get_data_file_name(cls) -> str:
+        return 'day_01.txt'
+
     @classmethod
     def solve_day(cls) -> List[str]:
+        raw_data = cls.get_lines_as_list_string('day_01.txt')
+
+        data = cls.parse_data(raw_data)
+
         return [
-            str(cls._compute_part_1()),
-            str(cls._compute_part_2()),
+            str(cls.compute_part_1(data)),
+            str(cls.compute_part_2(data)),
         ]
 
     @classmethod
-    def _compute_part_1(cls) -> int:
-        return max(cls._get_data())
+    def compute_part_1(cls, raw_data: List[int]) -> int:
+        """
+        Get Part 1's Answer
+        """
+        return max(raw_data)
 
     @classmethod
-    def _compute_part_2(cls) -> int:
-        results = sorted(cls._get_data())
+    def compute_part_2(cls, raw_data: List[int]) -> int:
+        """
+        Get Part 2's Answer
+        """
+
+        results = sorted(raw_data)
         results = results[-3:]
         return sum(results)
 
     @classmethod
-    def _get_data(cls) -> List[int]:
-        raw_data = cls.get_lines_as_list_string('day_01.txt')
+    def parse_data(cls, raw_data: List[str]) -> List[int]:
+        """
+        Parse the Day 01 data and convert into an understood format.
+        """
 
         results = []
         running_total = 0
