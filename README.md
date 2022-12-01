@@ -66,7 +66,9 @@ make run
 
 ## Advent Days
 
-- Coming soon...
+- Day 01
+  - [Docs](https://github.com/urda/advent-of-code/blob/master/docs/day_01.md)
+  - [Code](https://github.com/urda/advent-of-code/tree/master/src/advent_days/day_01)
 
 ### Advent Day Answers
 
