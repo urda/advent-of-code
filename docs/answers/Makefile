@@ -7,8 +7,8 @@ ANSWER_PREFIX = answer_day_
 PLAINTEXT_ANSWERS = ./answer_day_*.md
 PLAINTEXT_KEY = theurdahesayopensesame
 
-GPG_ARGUMENTS_ENCRYPT = -c --armor --passphrase "$(PLAINTEXT_KEY)"
-GPG_ARGUMENTS_DECRYPT = -d --passphrase "$(PLAINTEXT_KEY)"
+GPG_ARGUMENTS_ENCRYPT = --batch -c --armor --passphrase "$(PLAINTEXT_KEY)"
+GPG_ARGUMENTS_DECRYPT = --batch -d --passphrase "$(PLAINTEXT_KEY)"
 
 ########################################################################################################################
 # `make help` Needs to be first so it is ran when just `make` is called
