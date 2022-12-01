@@ -25,10 +25,6 @@ class Day01(DayMeta):
     """
 
     @classmethod
-    def _get_data_file_name(cls) -> str:
-        return 'day_01.txt'
-
-    @classmethod
     def solve_day(cls) -> List[str]:
         raw_data = cls.get_lines_as_list_string('day_01.txt')
 
