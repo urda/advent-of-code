@@ -17,12 +17,17 @@ limitations under the License.
 The entry point for the ADVENT OF CODE!
 """
 
+from advent_days.day_01 import (
+    Day01,
+)
 from advent_utils.menu_utils import (
     build_menu_lookups,
     print_menu,
 )
+from advent_utils.popo import MenuDayOption
 
 menu_options = [
+    MenuDayOption(1, Day01),
 ]
 
 
