@@ -40,19 +40,25 @@ class Day01(DayMeta):
         ]
 
     @classmethod
-    def compute_part_1(cls, raw_data: List[int]) -> int:
+    def compute_part_1(cls, parsed_data: List[int]) -> int:
         """
         Get Part 1's Answer
+
+        :param parsed_data: The list of calroie values parsed.
+        :returns: The maxium calorie total for the elf with the most.
         """
-        return max(raw_data)
+        return max(parsed_data)
 
     @classmethod
-    def compute_part_2(cls, raw_data: List[int]) -> int:
+    def compute_part_2(cls, parsed_data: List[int]) -> int:
         """
         Get Part 2's Answer
+
+        :param parsed_data: The list of calorie values parsed.
+        :returns: The sum of the three largest calorie sums.
         """
 
-        results = sorted(raw_data)
+        results = sorted(parsed_data)
         results = results[-3:]
         return sum(results)
 
@@ -60,6 +66,9 @@ class Day01(DayMeta):
     def parse_data(cls, raw_data: List[str]) -> List[int]:
         """
         Parse the Day 01 data and convert into an understood format.
+
+        :param raw_data: The raw data from Advent of Code
+        :returns: Computed calorie "totals".
         """
 
         results = []
