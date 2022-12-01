@@ -44,8 +44,8 @@ class Day01(DayMeta):
         """
         Get Part 1's Answer
 
-        :param parsed_data: The list of calroie values parsed.
-        :returns: The maxium calorie total for the elf with the most.
+        :param parsed_data: The list of calorie values parsed.
+        :returns: The maximum calorie total for the elf with the most.
         """
         return max(parsed_data)
 
