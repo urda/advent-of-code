@@ -20,6 +20,7 @@ The entry point for the ADVENT OF CODE!
 from advent_days import (
     Day01,
     Day02,
+    Day03,
 )
 from advent_utils.menu_utils import (
     build_menu_lookups,
@@ -30,6 +31,7 @@ from advent_utils.popo import MenuDayOption
 menu_options = [
     MenuDayOption(1, Day01),
     MenuDayOption(2, Day02),
+    MenuDayOption(3, Day03),
 ]
 
 
