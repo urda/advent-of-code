@@ -1,5 +1,5 @@
 """
-Copyright 2021-2022 Peter Urda
+Copyright 2022 Peter Urda
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,10 +14,24 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from .day_01 import Day01
-from .day_02 import Day02
+from unittest import TestCase
 
-__all__ = [
-    'Day01',
-    'Day02',
-]
+from advent_days import Day02
+
+
+class TestDay02(TestCase):
+    data = [
+        'A Y',
+        'B X',
+        'C Z',
+    ]
+
+    def test_part_1(self):
+        expected = 15
+        actual = Day02.parse_data(self.data, 1)
+        assert expected is actual
+
+    def test_part_2(self):
+        expected = 12
+        actual = Day02.parse_data(self.data, 2)
+        assert expected is actual
