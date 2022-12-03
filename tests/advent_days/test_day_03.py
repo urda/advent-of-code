@@ -20,14 +20,21 @@ from advent_days import Day03
 
 
 class TestDay03(TestCase):
-    data = None
+    data = [
+        'vJrwpWtwJgWrhcsFMMfFFhFp',
+        'jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL',
+        'PmmdzqPrVvPwwTWBwg',
+        'wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn',
+        'ttgJtRGJQctTZtZT',
+        'CrZsJsPPZsGzwwsLwLmpwMDw',
+    ]
 
     def test_part_1(self):
-        expected = True
-        actual = False
+        expected = 157
+        actual = Day03.parse_data(self.data)
         assert expected is actual
 
     def test_part_2(self):
-        expected = True
-        actual = False
+        expected = 70
+        actual = Day03.parse_data2(self.data)
         assert expected is actual
