@@ -72,6 +72,9 @@ make run
 - Day 02
   - [Docs](https://github.com/urda/advent-of-code/blob/master/docs/day_02.md)
   - [Code](https://github.com/urda/advent-of-code/tree/master/src/advent_days/day_02)
+- Day 03
+  - [Docs](https://github.com/urda/advent-of-code/blob/master/docs/day_03.md)
+  - [Code](https://github.com/urda/advent-of-code/tree/master/src/advent_days/day_03)
 
 ### Advent Day Answers
 
