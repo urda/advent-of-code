@@ -31,10 +31,10 @@ class TestDay03(TestCase):
 
     def test_part_1(self):
         expected = 157
-        actual = Day03.parse_data(self.data)
+        actual = Day03.compute_part_1(self.data)
         assert expected is actual
 
     def test_part_2(self):
         expected = 70
-        actual = Day03.parse_data2(self.data)
+        actual = Day03.compute_part_2(self.data)
         assert expected is actual

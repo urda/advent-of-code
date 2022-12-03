@@ -30,10 +30,12 @@ clean: # Clean plaintext answers
 .PHONY: encrypt
 encrypt: doEncrypt01 # Encrypt the answer files
 encrypt: doEncrypt02
+encrypt: doEncrypt03
 
 .PHONY: decrypt
 decrypt: doDecrypt01 # Decrypt the answer files
 decrypt: doDecrypt02
+decrypt: doDecrypt03
 
 ########################################################################################################################
 
@@ -43,6 +45,9 @@ doEncrypt01:
 doEncrypt02:
 	gpg $(GPG_ARGUMENTS_ENCRYPT) ./$(ANSWER_PREFIX)02.md
 
+doEncrypt03:
+	gpg $(GPG_ARGUMENTS_ENCRYPT) ./$(ANSWER_PREFIX)03.md
+
 
 ########################################################################################################################
 
@@ -51,3 +56,6 @@ doDecrypt01:
 
 doDecrypt02:
 	gpg $(GPG_ARGUMENTS_DECRYPT) ./$(ANSWER_PREFIX)02.md.asc > ./$(ANSWER_PREFIX)02.md
+
+doDecrypt03:
+	gpg $(GPG_ARGUMENTS_DECRYPT) ./$(ANSWER_PREFIX)03.md.asc > ./$(ANSWER_PREFIX)03.md

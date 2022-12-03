@@ -13,6 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
+
 from string import (
     ascii_lowercase,
     ascii_uppercase,
@@ -35,17 +36,17 @@ class Day03(DayMeta):
         raw_data = cls.get_lines_as_list_string('day_03.txt')
 
         return [
-            str(cls.parse_data(raw_data)),
-            str(cls.parse_data2(raw_data)),
+            str(cls.compute_part_1(raw_data)),
+            str(cls.compute_part_2(raw_data)),
         ]
 
     @classmethod
-    def parse_data(cls, raw_data: List[str]) -> int:
+    def compute_part_1(cls, raw_data: List[str]) -> int:
         """
-        Parse the data and convert into an understood format.
+        Parse the data and convert into an understood format and compute.
 
         :param raw_data: The raw data from Advent of Code
-        :returns:
+        :returns: The result for Part 1
         """
 
         score = 0
@@ -53,17 +54,17 @@ class Day03(DayMeta):
             box_a, box_b = cls.split_string(box)
             commons = list(set(box_a).intersection(box_b))
 
-            score += cls.get_lut()[commons.pop()]
+            score += cls.get_scoring_lut()[commons.pop()]
 
         return score
 
     @classmethod
-    def parse_data2(cls, raw_data: List[str]) -> int:
+    def compute_part_2(cls, raw_data: List[str]) -> int:
         """
-        Parse the data and convert into an understood format.
+        Parse the data and convert into an understood format and compute.
 
         :param raw_data: The raw data from Advent of Code
-        :returns:
+        :returns: The result for Part 2
         """
 
         score = 0
@@ -78,7 +79,7 @@ class Day03(DayMeta):
                 for local_sub_set in sub_set:
                     local_set = local_set.intersection(local_sub_set)
 
-                score += cls.get_lut()[local_set.pop()]
+                score += cls.get_scoring_lut()[local_set.pop()]
 
                 sub_group_id = 0
                 sub_set = []
@@ -87,19 +88,28 @@ class Day03(DayMeta):
 
     @classmethod
     def split_string(cls, data: str) -> (str, str):
-        return data[:len(data) // 2], data[len(data) // 2:]
+        """
+        Slice the string in half
+
+        :param data: The single string entry to split
+        :return: The string evently split as a tuple
+        """
+        return (
+            data[:len(data) // 2],
+            data[len(data) // 2:],
+        )
 
     @classmethod
-    def get_lut(cls) -> Dict[str, int]:
-        results = {}
+    def get_scoring_lut(cls) -> Dict[str, int]:
+        """
+        Build score lookup table.
 
-        start_value = 1
-        for char in ascii_lowercase:
-            results[char] = start_value
-            start_value += 1
+        :return: A dictionary where the keys are 'chars', the values the score.
+        """
+        score_lut = {}
+        search_space = ascii_lowercase + ascii_uppercase
 
-        for char in ascii_uppercase:
-            results[char] = start_value
-            start_value += 1
+        for index, char in enumerate(search_space):
+            score_lut[char] = index + 1
 
-        return results
+        return score_lut
