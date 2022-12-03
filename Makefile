@@ -31,6 +31,10 @@ clean: # Clean project files
 run: # Run the CLI App
 	./src/main.py
 
+.PHONY: utils
+utils: # Run the Utility Helper App
+	./src/utils.py
+
 ########################################################################################################################
 
 # Linting Tools
