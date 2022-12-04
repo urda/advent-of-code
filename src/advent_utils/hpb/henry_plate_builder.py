@@ -174,7 +174,7 @@ class HenryPlateBuilder:
         )
 
         print(f'Creating directory "{init_file_path.parent.as_posix()}" ...')
-        os.makedirs(init_file_path.parent)
+        os.makedirs(init_file_path.parent, exist_ok=True)
         new_pairings = [
             (init_file_path, init_day_file_str),
             (src_file_path, src_day_file_str),
