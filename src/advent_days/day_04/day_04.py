@@ -48,13 +48,7 @@ class Day04(DayMeta):
 
         results = 0
         for raw_data_entry in raw_data:
-            # Get the groups, and make the set ranges
-            group_a, group_b = cls._split_pairs(raw_data_entry)
-            group_a = cls._get_range_points(group_a)
-            group_b = cls._get_range_points(group_b)
-            set_a = cls._get_set_from_range(group_a)
-            set_b = cls._get_set_from_range(group_b)
-            # compare
+            set_a, set_b = cls._parse_entry(raw_data_entry)
             if set_a.issuperset(set_b) or set_a.issubset(set_b):
                 results += 1
 
@@ -71,15 +65,8 @@ class Day04(DayMeta):
 
         results = 0
         for raw_data_entry in raw_data:
-            # Get the groups, and make the set ranges
-            group_a, group_b = cls._split_pairs(raw_data_entry)
-            group_a = cls._get_range_points(group_a)
-            group_b = cls._get_range_points(group_b)
-            set_a = cls._get_set_from_range(group_a)
-            set_b = cls._get_set_from_range(group_b)
-            # compare
-            intersection_set = set_a.intersection(set_b)
-            if len(intersection_set) > 0:
+            set_a, set_b = cls._parse_entry(raw_data_entry)
+            if len(set_a.intersection(set_b)) > 0:
                 results += 1
 
         return results
@@ -87,29 +74,52 @@ class Day04(DayMeta):
     @classmethod
     def _get_range_points(cls, range_data: str) -> Tuple[int, int]:
         """
+        Given a raw string for a pair, make a tuple of ints from it.
 
-        :param range_data:
-        :return:
+        :param range_data: The range as a string from the input.
+        :return: The pair split into ints, parsed
         """
+
         start, end = range_data.split('-')
         return int(start), int(end)
 
     @classmethod
     def _get_set_from_range(cls, range_points: Tuple[int, int]) -> Set[int]:
         """
+        Given a tuple of ints, make a set from the range of the ints.
 
-        :param range_points:
-        :return:
+        :param range_points: The range as ints, from low to high
+        :return: A set of the range.
         """
+
         start, end = range_points[0], range_points[1] + 1
         return set(range(start, end))
 
     @classmethod
-    def _split_pairs(cls, raw_data: str) -> (str, str):
+    def _parse_entry(cls, raw_data: str) -> Tuple[Set[int], Set[int]]:
+        """
+        Parse a string from the data file into int literals.
+
+        :param raw_data: The raw data file line from the input.
+        :return: A tuple of the pairs as sets.
         """
 
-        :param raw_data:
-        :return:
+        group_a, group_b = cls._split_pairs(raw_data)
+        group_a = cls._get_range_points(group_a)
+        group_b = cls._get_range_points(group_b)
+        return (
+            cls._get_set_from_range(group_a),
+            cls._get_set_from_range(group_b),
+        )
+
+    @classmethod
+    def _split_pairs(cls, raw_data: str) -> Tuple[str, str]:
         """
+        Given the line of data, split the pairs into strings.
+
+        :param raw_data: The raw data file line from the input.
+        :return: A tuple of strings
+        """
+
         raw_data_objects = raw_data.split(',')
         return raw_data_objects[0], raw_data_objects[1]
