@@ -69,6 +69,16 @@ class CopyrightBuilder:
         return os.linesep.join(copy)
 
     @classmethod
+    def get_years_line_only(cls, years_token: str) -> str:
+        """
+        Generate just the years and the name line.
+
+        :param years_token: The years token built into a single string.
+        :return: The copyright years and name line.
+        """
+        return f'Copyright {years_token} Peter Urda'
+
+    @classmethod
     def _build_copyright_header(cls, years_token: str) -> List[str]:
         """
 
@@ -78,7 +88,7 @@ class CopyrightBuilder:
 
         header = [
             '"""',
-            f'Copyright {years_token} Peter Urda',
+            f'{cls.get_years_line_only(years_token)}',
             '',
         ]
 

@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
+import datetime
 import os
 from pathlib import Path
 from typing import (
@@ -21,6 +22,7 @@ from typing import (
     Tuple,
 )
 
+from advent_utils.copyright_builder import CopyrightBuilder
 from advent_utils.hpb.henry_plate_refs import HenryPlateRefs
 
 
@@ -75,10 +77,14 @@ class HenryPlateBuilder:
             contents = init_file.readlines()
 
         # As lines are inserted, later indexes have to reflect that
+        copy_idx_mark = 1
         import_idx_mark = contents.index('__all__ = [' + os.linesep) - 1
         class_idx_mark = len(contents)
 
         day_id = f'{day_token:02d}'
+        years = f'2021-{datetime.date.today().year}'
+        contents[copy_idx_mark] = \
+            f'{CopyrightBuilder.get_years_line_only(years)}{os.linesep}'
         contents.insert(
             import_idx_mark,
             f'from .day_{day_token:02d} import Day{day_id}{os.linesep}'
@@ -102,6 +108,7 @@ class HenryPlateBuilder:
             contents = main_py.readlines()
 
         # We seek nearby anchors, thinking about file shifts as we go
+        copy_idx_mark = 2
         import_anchor = contents.index(
             f'from advent_utils.menu_utils import ({os.linesep}'
         )
@@ -109,6 +116,9 @@ class HenryPlateBuilder:
             f'if __name__ == \'__main__\':{os.linesep}'
         )
 
+        years = f'2021-{datetime.date.today().year}'
+        contents[copy_idx_mark] = \
+            f'{CopyrightBuilder.get_years_line_only(years)}{os.linesep}'
         contents.insert(
             import_anchor - 1,
             f'    Day{day_token:02d},{os.linesep}')
