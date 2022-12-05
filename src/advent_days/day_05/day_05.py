@@ -37,30 +37,48 @@ class Day05(DayMeta):
 
     @classmethod
     def compute_part_1(cls, raw_data: List[str]) -> str:
+        """
+        Parse the data and convert into an understood format and compute.
+
+        :param raw_data: The raw data from Advent of Code
+        :returns: The result for Part 1
+        """
+
         boxes = cls._parse_data(raw_data, 1)
+        search_space = len(boxes)
 
         results = []
-        for idx in range(len(boxes)):
+        for idx in range(search_space):
             results.append(boxes[idx][-1])
 
         return ''.join(results)
 
     @classmethod
     def compute_part_2(cls, raw_data: List[str]) -> str:
+        """
+        Parse the data and convert into an understood format and compute.
+
+        :param raw_data: The raw data from Advent of Code
+        :returns: The result for Part 2
+        """
+
         boxes = cls._parse_data(raw_data, 2)
+        search_space = len(boxes)
 
         results = []
-        for idx in range(len(boxes)):
+        for idx in range(search_space):
             results.append(boxes[idx][-1])
 
         return ''.join(results)
 
     @classmethod
     def _find_index_for_column(cls, column: int) -> int:
+        """Figure out the actual index to look for box information"""
         return 1 + ((column - 1) * 4)
 
     @classmethod
     def _move_boxes(cls, raw_moves: List[str], box_data: Dict[int, List[str]]):
+        """Move boxes one-by-one from a given location to another."""
         for raw_move in raw_moves:
             move_count, (move_from, move_to) = cls._parse_move_line(raw_move)
             for _ in range(move_count):
@@ -72,6 +90,7 @@ class Day05(DayMeta):
             raw_moves: List[str],
             box_data: Dict[int, List[str]]
     ):
+        """Perform move operations as 'stacks' instead of one-by-one."""
         for raw_move in raw_moves:
             move_count, (move_from, move_to) = cls._parse_move_line(raw_move)
             move_bucket = []
@@ -86,6 +105,13 @@ class Day05(DayMeta):
             raw_data: List[str],
             parse_mode: int
     ) -> Dict[int, List[str]]:
+        """
+        Parse any raw data for this box problem
+
+        :param raw_data: The raw data to work on
+        :param parse_mode: The parse "mode" (a.k.a. the "part" of the problem)
+        :return: The modified box stacks from the problem.
+        """
         split_idx = raw_data.index('')
         raw_box_data = raw_data[:split_idx]
         raw_move_data = raw_data[split_idx+1:]
@@ -101,6 +127,7 @@ class Day05(DayMeta):
 
     @classmethod
     def _parse_box_data(cls, raw_box_data: List[str]) -> Dict[int, List[str]]:
+        """Given raw box data, create the stacks from it"""
         raw_columns = raw_box_data[-1]
         raw_boxes = raw_box_data[:-1]
         raw_max_height = len(raw_boxes) - 1
@@ -129,6 +156,7 @@ class Day05(DayMeta):
 
     @classmethod
     def _parse_move_line(cls, move_data: str) -> Tuple[int, Tuple[int, int]]:
+        """Break down those move lines into real integers."""
         raw_move_count, raw_locations = move_data.split('from')
 
         move_results = int(raw_move_count.split('move')[1])

@@ -32,12 +32,14 @@ encrypt: doEncrypt01 # Encrypt the answer files
 encrypt: doEncrypt02
 encrypt: doEncrypt03
 encrypt: doEncrypt04
+encrypt: doEncrypt05
 
 .PHONY: decrypt
 decrypt: doDecrypt01 # Decrypt the answer files
 decrypt: doDecrypt02
 decrypt: doDecrypt03
 decrypt: doDecrypt04
+decrypt: doDecrypt05
 
 ########################################################################################################################
 
@@ -53,6 +55,9 @@ doEncrypt03:
 doEncrypt04:
 	gpg $(GPG_ARGUMENTS_ENCRYPT) ./$(ANSWER_PREFIX)04.md
 
+doEncrypt05:
+	gpg $(GPG_ARGUMENTS_ENCRYPT) ./$(ANSWER_PREFIX)05.md
+
 ########################################################################################################################
 
 doDecrypt01:
@@ -66,3 +71,6 @@ doDecrypt03:
 
 doDecrypt04:
 	gpg $(GPG_ARGUMENTS_DECRYPT) ./$(ANSWER_PREFIX)04.md.asc > ./$(ANSWER_PREFIX)04.md
+
+doDecrypt05:
+	gpg $(GPG_ARGUMENTS_DECRYPT) ./$(ANSWER_PREFIX)05.md.asc > ./$(ANSWER_PREFIX)05.md
