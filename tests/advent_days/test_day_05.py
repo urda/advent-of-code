@@ -20,14 +20,24 @@ from advent_days import Day05
 
 
 class TestDay05(TestCase):
-    data = None
+    data = [
+        '    [D]    ',
+        '[N] [C]    ',
+        '[Z] [M] [P]',
+        ' 1   2   3',
+        '',
+        'move 1 from 2 to 1',
+        'move 3 from 1 to 3',
+        'move 2 from 2 to 1',
+        'move 1 from 1 to 2',
+    ]
 
     def test_part_1(self):
-        expected = True
-        actual = False
-        assert expected is actual
+        expected = 'CMZ'
+        actual = Day05.compute_part_1(self.data)
+        assert expected == actual
 
     def test_part_2(self):
-        expected = True
-        actual = False
-        assert expected is actual
+        expected = 'MCD'
+        actual = Day05.compute_part_2(self.data)
+        assert expected == actual
