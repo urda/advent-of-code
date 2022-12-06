@@ -26,4 +26,56 @@ class Day06(DayMeta):
 
     @classmethod
     def solve_day(cls) -> List[str]:
-        pass
+        raw_data = cls.get_lines_as_list_string('day_06.txt')[0]
+
+        return [
+            str(cls.compute_part_1(raw_data)),
+            str(cls.compute_part_2(raw_data)),
+        ]
+
+    @classmethod
+    def compute_part_1(cls, elf_datastream: str) -> int:
+        """
+        Parse the data and convert into an understood format and compute.
+
+        :param elf_datastream: The raw data from Advent of Code
+        :returns: The result for Part 1
+        """
+        return cls._search_data(elf_datastream, 4)
+
+    @classmethod
+    def compute_part_2(cls, elf_datastream: str) -> int:
+        """
+        Parse the data and convert into an understood format and compute.
+
+        :param elf_datastream: The raw data from Advent of Code
+        :returns: The result for Part 2
+        """
+        return cls._search_data(elf_datastream, 14)
+
+    @classmethod
+    def _search_data(cls, elf_datastream, msg_size: int) -> int:
+        """
+        Given the elf datastream, search the message for the unique sets
+
+        :param elf_datastream: The string of data from the elves to search.
+        :param msg_size: The number of unique characters needed to be seen.
+        :return: The number of characters seen after finding the marker.
+        """
+
+        local_line = []
+        result = -1
+
+        for idx, elf_char in enumerate(elf_datastream):
+            local_line.append(elf_char)
+
+            if len(local_line) < msg_size:
+                continue
+
+            if len(set(local_line)) == msg_size:
+                result = idx + 1
+                break
+
+            local_line.pop(0)
+
+        return result
