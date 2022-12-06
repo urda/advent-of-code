@@ -113,7 +113,7 @@ class HenryPlateRefs:
         data = [
             '        expected = True',
             '        actual = False',
-            '        assert expected is actual',
+            '        assert expected == actual',
         ]
 
         return os.linesep.join(data)
