@@ -20,14 +20,38 @@ from advent_days import Day07
 
 
 class TestDay07(TestCase):
-    data = None
+    data = [
+        '$ cd /',
+        '$ ls',
+        'dir a',
+        '14848514 b.txt',
+        '8504156 c.dat',
+        'dir d',
+        '$ cd a',
+        '$ ls',
+        'dir e',
+        '29116 f',
+        '2557 g',
+        '62596 h.lst',
+        '$ cd e',
+        '$ ls',
+        '584 i',
+        '$ cd ..',
+        '$ cd ..',
+        '$ cd d',
+        '$ ls',
+        '4060174 j',
+        '8033020 d.log',
+        '5626152 d.ext',
+        '7214296 k',
+    ]
 
     def test_part_1(self):
-        expected = True
-        actual = False
-        assert expected == actual
+        expected = 95437
+        actual = Day07.compute_part_1(self.data)
+        assert actual == expected
 
     def test_part_2(self):
-        expected = True
-        actual = False
-        assert expected == actual
+        expected = 24933642
+        actual = Day07.compute_part_2(self.data)
+        assert actual == expected
