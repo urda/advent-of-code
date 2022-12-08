@@ -20,14 +20,20 @@ from advent_days import Day08
 
 
 class TestDay08(TestCase):
-    data = None
+    data = [
+        '30373',
+        '25512',
+        '65332',
+        '33549',
+        '35390',
+    ]
 
     def test_part_1(self):
-        expected = True
-        actual = False
+        expected = 21
+        actual = Day08.compute_part_1(self.data)
         assert expected == actual
 
     def test_part_2(self):
-        expected = True
-        actual = False
+        expected = 8
+        actual = Day08.compute_part_2(self.data)
         assert expected == actual
