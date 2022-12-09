@@ -20,14 +20,32 @@ from advent_days import Day09
 
 
 class TestDay09(TestCase):
-    data = None
-
     def test_part_1(self):
-        expected = True
-        actual = False
+        data = [
+            'R 4',
+            'U 4',
+            'L 3',
+            'D 1',
+            'R 4',
+            'D 1',
+            'L 5',
+            'R 2',
+        ]
+        expected = 13
+        actual = Day09.compute_part_1(data)
         assert expected == actual
 
     def test_part_2(self):
-        expected = True
-        actual = False
+        data = [
+            'R 5',
+            'U 8',
+            'L 8',
+            'D 3',
+            'R 17',
+            'D 10',
+            'L 25',
+            'U 20',
+        ]
+        expected = 36
+        actual = Day09.compute_part_2(data)
         assert expected == actual

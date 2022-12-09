@@ -127,6 +127,9 @@ git commit -m "[Day XX] Pre-stage"  # Where XX is your Day number 01-25
 - Day 08
   - [Docs](https://github.com/urda/advent-of-code/blob/master/docs/day_08.md)
   - [Code](https://github.com/urda/advent-of-code/tree/master/src/advent_days/day_08)
+- Day 09
+  - [Docs](https://github.com/urda/advent-of-code/blob/master/docs/day_09.md)
+  - [Code](https://github.com/urda/advent-of-code/tree/master/src/advent_days/day_09)
 
 ## Advent Day Answers
 
