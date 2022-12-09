@@ -14,26 +14,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from enum import Enum
 from typing import (
     List,
     Set,
     Tuple,
 )
 
+from .direction import Direction
 from ..day_meta import DayMeta
-
-
-class ScopeMode(Enum):
-    Column = 1
-    Row = 2
-
-
-class Direction(Enum):
-    North = 1
-    South = 2
-    East = 3
-    West = 4
 
 
 class Day08(DayMeta):
@@ -43,7 +31,7 @@ class Day08(DayMeta):
 
     @classmethod
     def solve_day(cls) -> List[str]:
-        raw_data = cls.get_lines_as_list_string('day_08.txt')
+        raw_data = cls.get_lines_as_list_of_integer_lists('day_08.txt')
 
         return [
             str(cls.compute_part_1(raw_data)),
@@ -51,41 +39,71 @@ class Day08(DayMeta):
         ]
 
     @classmethod
-    def compute_part_1(cls, data: List[str]) -> int:
-        tree_grid = cls._parse_data(data)
+    def compute_part_1(cls, data: List[List[int]]) -> int:
+        """
+        Parse the data and convert into an understood format and compute.
 
-        result = cls._compute_edge_count(tree_grid)
-        result += cls._scope(tree_grid)
-
+        :param data: The raw data from Advent of Code
+        :returns: The result for Part 1
+        """
+        result = cls._compute_edge_count(data)
+        result += cls._scope(data)
         return result
 
     @classmethod
-    def compute_part_2(cls, data: List[str]) -> int:
-        tree_grid = cls._parse_data(data)
-        return cls._scenic_search(tree_grid)
+    def compute_part_2(cls, data: List[List[int]]) -> int:
+        """
+        Parse the data and convert into an understood format and compute.
+
+        :param data: The raw data from Advent of Code
+        :returns: The result for Part 2
+        """
+        return cls._scenic_search(data)
 
     @classmethod
     def _compute_edge_count(cls, parsed: List[List[int]]) -> int:
+        """
+        Compute the edges of the map for the "seen".
+
+        :param parsed: The parsed tree field.
+        :return: The computed seen trees at edge.
+        """
         return (len(parsed[0]) * 2) + (len(parsed) * 2) - 4
 
     @classmethod
     def _scenic_search(cls, parsed: List[List[int]]) -> int:
+        """
+        Perform the search to find the best scenic spot.
+        :param parsed: The parsed tree field.
+        :return: The computed seen trees at edge.
+        """
+
         row_count = len(parsed)
         column_count = len(parsed[0])
         result = -1
 
+        search_space = [
+            Direction.NORTH,
+            Direction.SOUTH,
+            Direction.EAST,
+            Direction.WEST,
+        ]
+
         for row_idx in range(row_count):
             for column_idx in range(column_count):
                 target = (row_idx, column_idx)
-                north = cls._scenic_search_local(parsed, target, Direction.North)
-                south = cls._scenic_search_local(parsed, target, Direction.South)
-                east = cls._scenic_search_local(parsed, target, Direction.East)
-                west = cls._scenic_search_local(parsed, target, Direction.West)
 
-                local_result = north * south * east * west
+                local_results = []
+                for direction in search_space:
+                    local_results.append(
+                        cls._scenic_search_local(parsed, target, direction)
+                    )
+                computed = 1
+                for local_result in local_results:
+                    computed = computed * local_result
 
-                if local_result > result:
-                    result = local_result
+                if computed > result:
+                    result = computed
 
         return result
 
@@ -96,64 +114,70 @@ class Day08(DayMeta):
             idx: Tuple[int, int],
             direction: Direction,
     ) -> int:
+        """
+        Given the location to consider and other factors, determine the score.
+
+        :param parsed: The parsed tree field.
+        :param idx: The "idx" of interest to examine.
+        :param direction: The "direction" of interest to examine.
+        :return:
+        """
         row_idx, column_idx = idx
 
         match direction:
-            case Direction.North:
+            case Direction.NORTH:
                 search_range = range(row_idx, -1, -1)
-                locked_value = column_idx
-            case Direction.South:
+            case Direction.SOUTH:
                 search_range = range(row_idx, len(parsed), 1)
-                locked_value = column_idx
-            case Direction.East:
+            case Direction.EAST:
                 search_range = range(column_idx, len(parsed[0]), 1)
-                locked_value = row_idx
-            case Direction.West:
+            case Direction.WEST:
                 search_range = range(column_idx, -1, -1)
+            case _:
+                raise NotImplementedError
+
+        match direction:
+            case Direction.NORTH | Direction.SOUTH:
+                locked_value = column_idx
+            case Direction.EAST | Direction.WEST:
                 locked_value = row_idx
             case _:
                 raise NotImplementedError
 
         max_height = None
         results = 0
-        if direction in (Direction.North, Direction.South):
-            for search_idx in search_range:
+        for search_idx in search_range:
+            if direction in (Direction.NORTH, Direction.SOUTH):
                 looking_at_tree = parsed[search_idx][locked_value]
-
-                if not max_height:
-                    max_height = looking_at_tree
-                    continue
-
-                results += 1
-                if looking_at_tree >= max_height:
-                    break
-        else:
-            for search_idx in search_range:
+            else:
                 looking_at_tree = parsed[locked_value][search_idx]
-                if not max_height:
-                    max_height = looking_at_tree
-                    continue
-                results += 1
-                if looking_at_tree >= max_height:
-                    break
+
+            if not max_height:
+                max_height = looking_at_tree
+                continue
+
+            results += 1
+            if looking_at_tree >= max_height:
+                break
 
         return results
 
     @classmethod
     def _scope(cls, parsed: List[List[int]]) -> int:
+        """Scope the interior of the tree field."""
         results = set()
 
         for row_idx in range(1, len(parsed) - 1):
-            east = cls._parse_row(parsed, row_idx, Direction.East)
-            west = cls._parse_row(parsed, row_idx, Direction.West)
-            results.update(east)
-            results.update(west)
+            for direction in (Direction.EAST, Direction.WEST):
+                results.update(
+                    cls._parse_row(parsed, row_idx, direction)
+                )
 
         for column_idx in range(1, len(parsed[0]) - 1):
-            north = cls._parse_column(parsed, column_idx, Direction.North)
-            south = cls._parse_column(parsed, column_idx, Direction.South)
-            results.update(north)
-            results.update(south)
+            for direction in (Direction.NORTH, Direction.SOUTH):
+                results.update(
+                    cls._parse_column(parsed, column_idx, direction)
+                )
 
         return len(results)
 
@@ -164,11 +188,18 @@ class Day08(DayMeta):
             column_idx: int,
             direction: Direction,
     ) -> Set[Tuple[int, int]]:
+        """
+        Parse a given column for trees
+        :param data: The parsed tree field.
+        :param column_idx: The column's index we're looking at.
+        :param direction: The direction to search in the column.
+        :return: A set of coordinates of seen result trees.
+        """
         match direction:
-            case Direction.South:
+            case Direction.SOUTH:
                 step = 1
                 tree_pov = data[0][column_idx]
-            case Direction.North:
+            case Direction.NORTH:
                 step = -1
                 data_height = len(data) - 1
                 tree_pov = data[data_height][column_idx]
@@ -182,7 +213,7 @@ class Day08(DayMeta):
         results = set()
 
         for row_idx in row_range:
-            if row_idx in (0, len(data) -1):
+            if row_idx in (0, len(data) - 1):
                 continue
 
             looking_at_tree = data[row_idx][column_idx]
@@ -199,13 +230,20 @@ class Day08(DayMeta):
             row_idx: int,
             direction: Direction,
     ) -> Set[Tuple[int, int]]:
+        """
+        Parse a given row for trees.
+        :param data: The parsed tree field.
+        :param row_idx: The row's index we're looking at.
+        :param direction: The direction to search in the row.
+        :return: A set of coordinates of seen result trees.
+        """
         row = data[row_idx]
 
         match direction:
-            case Direction.East:
+            case Direction.EAST:
                 step = 1
                 tree_pov = row[0]
-            case Direction.West:
+            case Direction.WEST:
                 step = -1
                 tree_pov = row[-1]
             case _:
@@ -214,7 +252,7 @@ class Day08(DayMeta):
         min_height = tree_pov
 
         results = set()
-        for column_idx, tree in enumerate(row[::step]):
+        for column_idx, _ in enumerate(row[::step]):
             column_idx_actual = column_idx if step > 0 \
                 else len(row) - 1 - column_idx
 
@@ -227,13 +265,3 @@ class Day08(DayMeta):
                 min_height = looking_at_tree
 
         return results
-
-    @classmethod
-    def _parse_data(cls, data: List[str]) -> List[List[int]]:
-        rows = []
-        for raw_data in data:
-            curr_row = []
-            for entry in raw_data:
-                curr_row.append(int(entry))
-            rows.append(curr_row)
-        return rows

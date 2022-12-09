@@ -14,26 +14,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from unittest import TestCase
-
-from advent_days import Day08
+from enum import Enum
 
 
-class TestDay08(TestCase):
-    data = [
-        [3, 0, 3, 7, 3],
-        [2, 5, 5, 1, 2],
-        [6, 5, 3, 3, 2],
-        [3, 3, 5, 4, 9],
-        [3, 5, 3, 9, 0],
-    ]
-
-    def test_part_1(self):
-        expected = 21
-        actual = Day08.compute_part_1(self.data)
-        assert expected == actual
-
-    def test_part_2(self):
-        expected = 8
-        actual = Day08.compute_part_2(self.data)
-        assert expected == actual
+class Direction(Enum):
+    """
+    Enum to control the "direction" being looked at.
+    """
+    NORTH = 1
+    SOUTH = 2
+    EAST = 3
+    WEST = 4
