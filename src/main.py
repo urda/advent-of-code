@@ -28,6 +28,7 @@ from advent_days import (
     Day08,
     Day09,
     Day10,
+    Day11,
 )
 from advent_utils.menu_utils import (
     build_menu_lookups,
@@ -46,6 +47,7 @@ menu_options = [
     MenuDayOption(8, Day08),
     MenuDayOption(9, Day09),
     MenuDayOption(10, Day10),
+    MenuDayOption(11, Day11),
 ]
 
 

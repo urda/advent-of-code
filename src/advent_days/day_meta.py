@@ -72,6 +72,23 @@ class DayMeta(ABC):
         return lines
 
     @classmethod
+    def get_lines_as_list_string_rstrip(cls, data_file_name: str) -> List[str]:
+        """
+        Given a data file name, read out the lines from it into a Python
+        list of strings, with ".rstrip()" applied to each line.
+
+        :param data_file_name: The data file to lookup in the project.
+        :return: A Python list of strings of each line.
+        """
+        data_path = cls.build_data_file_path(data_file_name)
+
+        lines = []
+        with open(data_path, 'r', encoding='utf-8') as data_file:
+            for line in data_file:
+                lines.append(line.rstrip())
+        return lines
+
+    @classmethod
     def get_lines_as_list_of_integer_lists(
             cls,
             data_file_name: str
