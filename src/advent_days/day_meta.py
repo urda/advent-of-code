@@ -55,6 +55,22 @@ class DayMeta(ABC):
         return [int(x) for x in raw_data_line.split(',')]
 
     @classmethod
+    def get_lines_as_list_int(cls, data_file_name: str) -> List[int]:
+        """
+        Given a data file name, read out the lines from it into a Python
+        list of integers.
+
+        :param data_file_name: The data file to lookup in the project.
+        :return: A Python list of integers of each line.
+        """
+        data_path = cls.build_data_file_path(data_file_name)
+        lines = []
+        with open(data_path, 'r', encoding='utf-8') as data_file:
+            for line in data_file:
+                lines.append(int(line))
+        return lines
+
+    @classmethod
     def get_lines_as_list_string(cls, data_file_name: str) -> List[str]:
         """
         Given a data file name, read out the lines from it into a Python

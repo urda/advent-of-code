@@ -33,6 +33,7 @@ from .day_16 import Day16
 from .day_17 import Day17
 from .day_18 import Day18
 from .day_19 import Day19
+from .day_20 import Day20
 
 __all__ = [
     'Day01',
@@ -54,4 +55,5 @@ __all__ = [
     'Day17',
     'Day18',
     'Day19',
+    'Day20',
 ]
