@@ -52,6 +52,7 @@ encrypt: doEncrypt21
 encrypt: doEncrypt22
 encrypt: doEncrypt23
 encrypt: doEncrypt24
+encrypt: doEncrypt25
 
 .PHONY: decrypt
 decrypt: doDecrypt01 # Decrypt the answer files
@@ -78,6 +79,7 @@ decrypt: doDecrypt21
 decrypt: doDecrypt22
 decrypt: doDecrypt23
 decrypt: doDecrypt24
+decrypt: doDecrypt25
 
 ########################################################################################################################
 
@@ -153,6 +155,9 @@ doEncrypt23:
 doEncrypt24:
 	gpg $(GPG_ARGUMENTS_ENCRYPT) ./$(ANSWER_PREFIX)24.md
 
+doEncrypt25:
+	gpg $(GPG_ARGUMENTS_ENCRYPT) ./$(ANSWER_PREFIX)25.md
+
 ########################################################################################################################
 
 doDecrypt01:
@@ -226,3 +231,6 @@ doDecrypt23:
 
 doDecrypt24:
 	gpg $(GPG_ARGUMENTS_DECRYPT) ./$(ANSWER_PREFIX)24.md.asc > ./$(ANSWER_PREFIX)24.md
+
+doDecrypt25:
+	gpg $(GPG_ARGUMENTS_DECRYPT) ./$(ANSWER_PREFIX)25.md.asc > ./$(ANSWER_PREFIX)25.md
