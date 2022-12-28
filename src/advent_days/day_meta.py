@@ -125,6 +125,21 @@ class DayMeta(ABC):
         return lines
 
     @classmethod
+    def get_lines_as_string(cls, data_file_name: str) -> str:
+        """
+        Given a data file name, read out the lines as a single string.
+
+        :param data_file_name: The data file to lookup in the project.
+        :return: A Python string of the file.
+        """
+
+        data_path = cls.build_data_file_path(data_file_name)
+        result = ''
+        with open(data_path, 'r', encoding='utf-8') as data_file:
+            result = data_file.read()
+        return result
+
+    @classmethod
     @abstractmethod
     def solve_day(cls) -> List[str]:
         """
