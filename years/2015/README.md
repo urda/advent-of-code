@@ -1,6 +1,6 @@
-# Advent of Code
+# Advent of Code (2015)
 
-https://adventofcode.com/
+https://adventofcode.com/2015/
 
 # Environment
 
@@ -104,30 +104,30 @@ git commit -m "[Day XX] Pre-stage"  # Where XX is your Day number 01-25
 # Advent Days
 
 - Day 01
-  - [Docs](https://github.com/urda/advent-of-code/blob/master/docs/day_01.md)
-  - [Code](https://github.com/urda/advent-of-code/tree/master/src/advent_days/day_01)
-  - [Tests](https://github.com/urda/advent-of-code/blob/master/tests/advent_days/test_day_01.py)
+  - [Docs](https://github.com/urda/advent-of-code/blob/master/years/2015/docs/day_01.md)
+  - [Code](https://github.com/urda/advent-of-code/tree/master/years/2015/src/advent_days/day_01)
+  - [Tests](https://github.com/urda/advent-of-code/blob/master/years/2015/tests/advent_days/test_day_01.py)
 - Day 02
-  - [Docs](https://github.com/urda/advent-of-code/blob/master/docs/day_02.md)
-  - [Code](https://github.com/urda/advent-of-code/tree/master/src/advent_days/day_02)
-  - [Tests](https://github.com/urda/advent-of-code/blob/master/tests/advent_days/test_day_02.py)
+  - [Docs](https://github.com/urda/advent-of-code/blob/master/years/2015/docs/day_02.md)
+  - [Code](https://github.com/urda/advent-of-code/tree/master/years/2015/src/advent_days/day_02)
+  - [Tests](https://github.com/urda/advent-of-code/blob/master/years/2015/tests/advent_days/test_day_02.py)
 - Day 03
-  - [Docs](https://github.com/urda/advent-of-code/blob/master/docs/day_03.md)
-  - [Code](https://github.com/urda/advent-of-code/tree/master/src/advent_days/day_03)
-  - [Tests](https://github.com/urda/advent-of-code/blob/master/tests/advent_days/test_day_03.py)
+  - [Docs](https://github.com/urda/advent-of-code/blob/master/years/2015/docs/day_03.md)
+  - [Code](https://github.com/urda/advent-of-code/tree/master/years/2015/src/advent_days/day_03)
+  - [Tests](https://github.com/urda/advent-of-code/blob/master/years/2015/tests/advent_days/test_day_03.py)
 - Day 04
-  - [Docs](https://github.com/urda/advent-of-code/blob/master/docs/day_04.md)
-  - [Code](https://github.com/urda/advent-of-code/tree/master/src/advent_days/day_04)
-  - [Tests](https://github.com/urda/advent-of-code/blob/master/tests/advent_days/test_day_04.py)
+  - [Docs](https://github.com/urda/advent-of-code/blob/master/years/2015/docs/day_04.md)
+  - [Code](https://github.com/urda/advent-of-code/tree/master/years/2015/src/advent_days/day_04)
+  - [Tests](https://github.com/urda/advent-of-code/blob/master/years/2015/tests/advent_days/test_day_04.py)
 - Day 05
-  - [Docs](https://github.com/urda/advent-of-code/blob/master/docs/day_05.md)
-  - [Code](https://github.com/urda/advent-of-code/tree/master/src/advent_days/day_05)
-  - [Tests](https://github.com/urda/advent-of-code/blob/master/tests/advent_days/test_day_05.py)
+  - [Docs](https://github.com/urda/advent-of-code/blob/master/years/2015/docs/day_05.md)
+  - [Code](https://github.com/urda/advent-of-code/tree/master/years/2015/src/advent_days/day_05)
+  - [Tests](https://github.com/urda/advent-of-code/blob/master/years/2015/tests/advent_days/test_day_05.py)
 - Day 06
-  - [Docs](https://github.com/urda/advent-of-code/blob/master/docs/day_06.md)
-  - [Code](https://github.com/urda/advent-of-code/tree/master/src/advent_days/day_06)
-  - [Tests](https://github.com/urda/advent-of-code/blob/master/tests/advent_days/test_day_06.py)
+  - [Docs](https://github.com/urda/advent-of-code/blob/master/years/2015/docs/day_06.md)
+  - [Code](https://github.com/urda/advent-of-code/tree/master/years/2015/src/advent_days/day_06)
+  - [Tests](https://github.com/urda/advent-of-code/blob/master/years/2015/tests/advent_days/test_day_06.py)
 
 ## Advent Day Answers
 
-- See [the `docs/answers/README` file](https://github.com/urda/advent-of-code/blob/master/docs/answers/README.md)
+- See [the `docs/answers/README` file](https://github.com/urda/advent-of-code/blob/master/years/2015/docs/answers/README.md)
