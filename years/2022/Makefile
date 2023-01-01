@@ -48,7 +48,7 @@ flake8:
 	flake8 -v
 
 pylint:
-	pylint --output-format=text --rcfile=./.pylintrc $(PYLINT_PATH)
+	pylint --output-format=text $(PYLINT_PATH)
 
 ########################################################################################################################
 
