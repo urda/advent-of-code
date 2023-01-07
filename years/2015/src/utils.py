@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Copyright 2022 Peter Urda
+Copyright 2022-2023 Peter Urda
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -17,9 +17,36 @@ limitations under the License.
 The entry point Utility Helper App
 """
 
+import argparse
+from datetime import date
+
 from advent_utils.hpb.henry_plate_builder import HenryPlateBuilder
 
+
+def build_arg_parser() -> argparse.ArgumentParser:
+    current_year = date.today().year
+
+    parser = argparse.ArgumentParser(
+        prog='Advent of Code 2015 - Utils',
+        description='Supports the Advent of Code',
+        epilog='Advent of Code Utils by Urda',
+    )
+
+    parser.add_argument(
+        '-y',
+        '--year',
+        type=int,
+        default=current_year,
+        required=False,
+        help='Sets the YEAR the utilities should reference.',
+    )
+
+    return parser
+
+
 if __name__ == '__main__':
+    args = build_arg_parser().parse_args()
+
     line_br = '-' * 80
     while True:
         print(line_br)
@@ -42,6 +69,6 @@ if __name__ == '__main__':
                 print()
                 break
             case 1:
-                HenryPlateBuilder.pre_stage_day()
+                HenryPlateBuilder.pre_stage_day(args.year)
             case _:
                 print('Input not understood. Try again.')

@@ -33,7 +33,7 @@ run: # Run the CLI App
 
 .PHONY: utils
 utils: # Run the Utility Helper App
-	./src/utils.py
+	./src/utils.py -y 2015
 
 ########################################################################################################################
 
