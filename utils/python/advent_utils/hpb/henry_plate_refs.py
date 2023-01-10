@@ -1,5 +1,5 @@
 """
-Copyright 2022 Peter Urda
+Copyright 2022-2023 Peter Urda
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,7 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-import datetime
 import os
 
 from advent_utils.copyright_builder import CopyrightBuilder
@@ -26,10 +25,11 @@ class HenryPlateRefs:
     """
 
     @classmethod
-    def get_src_file_contents(cls, day_token: int) -> str:
+    def get_src_file_contents(cls, year_token: int, day_token: int) -> str:
         """
         Get the main source file contents
 
+        :param year_token: The advent year number.
         :param day_token: The advent day number to use.
         :return: The henry plate source code.
         """
@@ -44,7 +44,7 @@ class HenryPlateRefs:
             '',
             f'class Day{day_token:02d}(DayMeta):',
             '    """',
-            f'    Advent of Code {datetime.date.today().year}, '
+            f'    Advent of Code {year_token}, '
             f'Day {day_token:02d}',
             '    """',
             '',

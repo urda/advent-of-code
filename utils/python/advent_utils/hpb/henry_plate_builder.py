@@ -1,5 +1,5 @@
 """
-Copyright 2022 Peter Urda
+Copyright 2022-2023 Peter Urda
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,8 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-import datetime
 import os
+from datetime import date
 from pathlib import Path
 from typing import (
     List,
@@ -66,7 +66,11 @@ class HenryPlateBuilder:
                 new_file.write(file_content)
 
     @classmethod
-    def modify_advent_init(cls, file_path: Path, day_token: int) -> None:
+    def modify_advent_init(
+            cls,
+            file_path: Path,
+            day_token: int
+    ) -> None:
         """
         Modify the '__init__' file to introduce new days for imports.
 
@@ -82,7 +86,7 @@ class HenryPlateBuilder:
         class_idx_mark = len(contents)
 
         day_id = f'{day_token:02d}'
-        years = f'2021-{datetime.date.today().year}'
+        years = f'2021-{date.today().year}'
         contents[copy_idx_mark] = \
             f'{CopyrightBuilder.get_years_line_only(years)}{os.linesep}'
         contents.insert(
@@ -96,7 +100,11 @@ class HenryPlateBuilder:
             init_file.writelines(contents)
 
     @classmethod
-    def modify_main(cls, file_path: Path, day_token: int) -> None:
+    def modify_main(
+            cls,
+            file_path: Path,
+            day_token: int
+    ) -> None:
         """
         Modify the 'main.py' program for a new day.
 
@@ -116,7 +124,7 @@ class HenryPlateBuilder:
             f'if __name__ == \'__main__\':{os.linesep}'
         )
 
-        years = f'2021-{datetime.date.today().year}'
+        years = f'2021-{date.today().year}'
         contents[copy_idx_mark] = \
             f'{CopyrightBuilder.get_years_line_only(years)}{os.linesep}'
         contents.insert(
@@ -132,14 +140,20 @@ class HenryPlateBuilder:
             main_py.writelines(contents)
 
     @classmethod
-    def pre_stage_day(cls) -> None:
+    def pre_stage_day(cls, year_token: int) -> None:
         """
         Perform all the required interactions and work to pre-stage a day.
         """
 
+        # pylint: disable=too-many-locals
+
         print()
         print('[HPB]')
         print()
+
+        if year_token < 2015:
+            print(f'Year "{year_token}" does not make sense.')
+            return
 
         day_input = input('Enter an advent day number: ')
         day_parsed = int(day_input) if day_input.isdigit() else None
@@ -167,7 +181,8 @@ class HenryPlateBuilder:
 
         # This content is always created each day
         init_day_file_str = HenryPlateRefs.get_init_file_contents(day_token)
-        src_day_file_str = HenryPlateRefs.get_src_file_contents(day_token)
+        src_day_file_str = HenryPlateRefs.get_src_file_contents(year_token,
+                                                                day_token)
         test_day_file_str = HenryPlateRefs.get_test_file_contents(day_token)
 
         init_file_path = Path(
