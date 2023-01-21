@@ -1,5 +1,5 @@
 """
-Copyright 2021-2023 Peter Urda
+Copyright 2023 Peter Urda
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,29 +14,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
+from unittest import TestCase
 
-from .day_01 import Day01
-from .day_02 import Day02
-from .day_03 import Day03
-from .day_04 import Day04
-from .day_05 import Day05
-from .day_06 import Day06
-from .day_07 import Day07
-from .day_08 import Day08
-from .day_09 import Day09
-from .day_10 import Day10
-from .day_11 import Day11
+from advent_days import Day11
 
-__all__ = [
-    'Day01',
-    'Day02',
-    'Day03',
-    'Day04',
-    'Day05',
-    'Day06',
-    'Day07',
-    'Day08',
-    'Day09',
-    'Day10',
-    'Day11',
-]
+
+# noinspection SpellCheckingInspection
+class TestDay11(TestCase):
+    def test_part(self):
+        expected = 'aaaaabcc'
+        actual = Day11.compute_part('aaaaaaaa')
+        assert expected == actual

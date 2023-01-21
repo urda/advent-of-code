@@ -44,6 +44,10 @@ https://adventofcode.com/2015/
   - [Docs](https://github.com/urda/advent-of-code/blob/master/years/2015/docs/day_10.md)
   - [Code](https://github.com/urda/advent-of-code/tree/master/years/2015/src/advent_days/day_10)
   - [Tests](https://github.com/urda/advent-of-code/blob/master/years/2015/tests/advent_days/test_day_10.py)
+- Day 11
+  - [Docs](https://github.com/urda/advent-of-code/blob/master/years/2015/docs/day_11.md)
+  - [Code](https://github.com/urda/advent-of-code/tree/master/years/2015/src/advent_days/day_11)
+  - [Tests](https://github.com/urda/advent-of-code/blob/master/years/2015/tests/advent_days/test_day_11.py)
 
 ## Advent Day Answers
 
