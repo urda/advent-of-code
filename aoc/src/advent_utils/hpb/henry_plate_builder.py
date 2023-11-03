@@ -96,12 +96,11 @@ class HenryPlateBuilder:
             init_file.writelines(contents)
 
     @classmethod
-    def modify_main(cls, file_path: Path, day_token: int) -> None:
+    def modify_main_copyright(cls, file_path: Path) -> None:
         """
-        Modify the 'main.py' program for a new day.
+        Modify the 'main.py' program's copyright.
 
         :param file_path: The Path object to 'main.py'.
-        :param day_token: The advent day number.
         """
 
         with open(file_path, 'r', encoding='utf-8') as main_py:
@@ -109,23 +108,9 @@ class HenryPlateBuilder:
 
         # We seek nearby anchors, thinking about file shifts as we go
         copy_idx_mark = 2
-        import_anchor = contents.index(
-            f'from advent_utils.menu_utils import ({os.linesep}'
-        )
-        menu_anchor = contents.index(
-            f'if __name__ == \'__main__\':{os.linesep}'
-        )
-
         years = f'2021-{datetime.date.today().year}'
         contents[copy_idx_mark] = \
             f'{CopyrightBuilder.get_years_line_only(years)}{os.linesep}'
-        contents.insert(
-            import_anchor - 1,
-            f'    Day{day_token:02d},{os.linesep}')
-        contents.insert(
-            menu_anchor - 2,
-            f'    MenuDayOption({day_token}, Day{day_token:02d}),{os.linesep}'
-        )
 
         with open(file_path, 'w', encoding='utf-8') as main_py:
             print(f'Updating "{file_path.as_posix()}" ...')
@@ -171,7 +156,10 @@ class HenryPlateBuilder:
         # This content is always created each day
         init_day_file_str = HenryPlateRefs.get_init_file_contents(day_token)
         src_day_file_str = HenryPlateRefs.get_src_file_contents(day_token)
-        test_day_file_str = HenryPlateRefs.get_test_file_contents(day_token)
+        test_day_file_str = HenryPlateRefs.get_test_file_contents(
+            year_parsed,
+            day_token
+        )
 
         init_file_path = Path(
             cls.build_src_root_path(),
@@ -204,7 +192,7 @@ class HenryPlateBuilder:
 
         # Perform modifications
         cls.modify_advent_init(advent_init_path, day_token)
-        cls.modify_main(main_file_path, day_token)
+        cls.modify_main_copyright(main_file_path)
 
     @classmethod
     def _internal_master_root(cls) -> Path:

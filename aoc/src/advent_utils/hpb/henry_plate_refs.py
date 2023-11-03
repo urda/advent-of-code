@@ -99,10 +99,15 @@ class HenryPlateRefs:
         return os.linesep.join(file_contents)
 
     @classmethod
-    def get_test_file_contents(cls, day_token: int) -> str:
+    def get_test_file_contents(
+            cls,
+            year_token: int,
+            day_token: int,
+    ) -> str:
         """
         Get the test file contents
 
+        :param year_token: The advent year number to use.
         :param day_token: The advent day number to use.
         :return: The henry plate test code.
         """
@@ -111,7 +116,7 @@ class HenryPlateRefs:
             '',
             'from unittest import TestCase',
             '',
-            f'from advent_days import Day{day_token:02d}',
+            f'from advent_years.y{year_token} import Day{day_token:02d}',
             '',
             '',
             f'class TestDay{day_token:02d}(TestCase):',
