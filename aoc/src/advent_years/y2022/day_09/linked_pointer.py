@@ -16,7 +16,7 @@ limitations under the License.
 
 from __future__ import annotations
 
-from advent_common.pointer import Pointer
+from .pointer import Pointer
 
 
 class LinkedPointer(Pointer):

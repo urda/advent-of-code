@@ -19,11 +19,11 @@ from typing import (
     Set,
 )
 
-from advent_common.coordinate import Coordinate
-from advent_common.pointer import Pointer
+from .coordinate import Coordinate
 from .direction import Direction
 from .linked_pointer import LinkedPointer
 from .movement import Movement
+from .pointer import Pointer
 from ..day_meta import DayMeta
 
 

@@ -18,9 +18,9 @@ from typing import (
     List,
 )
 
-from advent_common.coordinate import Coordinate
-from advent_common.pointer import Pointer
 from .cardinaldirection import CardinalDirection
+from .coordinate import Coordinate
+from .pointer import Pointer
 from ..day_meta import DayMeta
 
 
