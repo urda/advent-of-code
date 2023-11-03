@@ -80,3 +80,9 @@ test2022:
 	PYTHONPATH=$(PYTHON_PATH) pytest \
 	--verbose \
 	./tests/advent_years/y2022/
+
+.PHONY: test2023
+test2023:
+	PYTHONPATH=$(PYTHON_PATH) pytest \
+	--verbose \
+	./tests/advent_years/y2023/
