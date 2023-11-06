@@ -46,6 +46,7 @@ menu_options = {
         MenuDayOption(12, y2015.Day12),
         MenuDayOption(13, y2015.Day13),
         MenuDayOption(14, y2015.Day14),
+        MenuDayOption(15, y2015.Day15),
     ],
     2021: [
         MenuDayOption(1, y2021.Day01),
