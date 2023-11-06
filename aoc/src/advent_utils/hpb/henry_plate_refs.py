@@ -26,7 +26,11 @@ class HenryPlateRefs:
     """
 
     @classmethod
-    def get_src_file_contents(cls, day_token: int) -> str:
+    def get_src_file_contents(
+            cls,
+            year_token: int,
+            day_token: int,
+    ) -> str:
         """
         Get the main source file contents
 
@@ -44,7 +48,7 @@ class HenryPlateRefs:
             '',
             f'class Day{day_token:02d}(DayMeta):',
             '    """',
-            f'    Advent of Code {datetime.date.today().year}, '
+            f'    Advent of Code {year_token}, '
             f'Day {day_token:02d}',
             '    """',
             '',

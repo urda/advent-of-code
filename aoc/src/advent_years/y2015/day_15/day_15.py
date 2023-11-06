@@ -27,7 +27,7 @@ from ..day_meta import DayMeta
 
 class Day15(DayMeta):
     """
-    Advent of Code 2023, Day 15
+    Advent of Code 2015, Day 15
     """
 
     _max_calories = 500

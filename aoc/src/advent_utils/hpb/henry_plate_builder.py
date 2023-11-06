@@ -155,7 +155,10 @@ class HenryPlateBuilder:
 
         # This content is always created each day
         init_day_file_str = HenryPlateRefs.get_init_file_contents(day_token)
-        src_day_file_str = HenryPlateRefs.get_src_file_contents(day_token)
+        src_day_file_str = HenryPlateRefs.get_src_file_contents(
+            year_parsed,
+            day_token
+        )
         test_day_file_str = HenryPlateRefs.get_test_file_contents(
             year_parsed,
             day_token
