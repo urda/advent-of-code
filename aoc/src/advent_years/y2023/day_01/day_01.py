@@ -87,7 +87,6 @@ class Day01(DayMeta):
             if char_val.isnumeric():
                 if idx < first_value[0]:
                     first_value = [idx, int(char_val)]
-                    first_value[1] = int(char_val)
                 if idx > last_value[0]:
                     last_value = [idx, int(char_val)]
 
