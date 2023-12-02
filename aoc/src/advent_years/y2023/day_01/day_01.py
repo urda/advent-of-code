@@ -86,9 +86,9 @@ class Day01(DayMeta):
         for idx, char_val in enumerate(data):
             if char_val.isnumeric():
                 if idx < first_value[0]:
-                    first_value = [idx, int(char_val)]
+                    first_value = (idx, int(char_val))
                 if idx > last_value[0]:
-                    last_value = [idx, int(char_val)]
+                    last_value = (idx, int(char_val))
 
         computed_value = int(f'{first_value[1]}{last_value[1]}')
         return computed_value
