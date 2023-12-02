@@ -28,6 +28,7 @@ from advent_years import (
     y2015,
     y2021,
     y2022,
+    y2023,
 )
 
 menu_options = {
@@ -89,7 +90,10 @@ menu_options = {
         MenuDayOption(23, y2022.Day23),
         MenuDayOption(24, y2022.Day24),
         MenuDayOption(25, y2022.Day25),
-    ]
+    ],
+    2023: [
+        MenuDayOption(1, y2023.Day01),
+    ],
 }
 
 
