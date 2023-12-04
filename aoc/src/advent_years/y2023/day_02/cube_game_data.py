@@ -1,5 +1,5 @@
 """
-Copyright 2021-2023 Peter Urda
+Copyright 2023 Peter Urda
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,10 +14,15 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from .day_01 import Day01
-from .day_02 import Day02
+from dataclasses import dataclass
+from typing import Dict
 
-__all__ = [
-    'Day01',
-    'Day02',
-]
+
+@dataclass
+class CubeGameData:
+    """
+    Dataclass to store a cube game data collection.
+    """
+
+    game_id: int
+    games: Dict[str, int]
