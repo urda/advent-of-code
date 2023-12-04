@@ -16,8 +16,8 @@ limitations under the License.
 
 from typing import List
 
-from ..day_meta import DayMeta
 from .scratch_card import ScratchCard
+from ..day_meta import DayMeta
 
 
 class Day04(DayMeta):
