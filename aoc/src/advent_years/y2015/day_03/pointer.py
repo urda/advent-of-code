@@ -17,7 +17,6 @@ limitations under the License.
 from .coordinate import Coordinate
 
 
-# pylint: disable=duplicate-code
 class Pointer:
     """
     Advanced Python object for an (x, y) coordinate pointer.

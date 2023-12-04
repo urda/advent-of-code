@@ -40,7 +40,6 @@ from .day_23 import Day23
 from .day_24 import Day24
 from .day_25 import Day25
 
-# pylint: disable=duplicate-code
 __all__ = [
     'Day01',
     'Day02',

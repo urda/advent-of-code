@@ -28,7 +28,6 @@ class HillCoordinate:
     _elevation: int
     _elevation_char: str
 
-    # pylint: disable=duplicate-code
     _elevation_lut = {
         'S': 1,
         'a': 1,

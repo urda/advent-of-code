@@ -15,7 +15,6 @@ limitations under the License.
 """
 
 
-# pylint: disable=duplicate-code
 class Coordinate:
     """
     Advanced Python object for an (x, y) coordinate.

@@ -32,7 +32,6 @@ class Day09(DayMeta):
     Advent of Code 2015, Day 09
     """
 
-    # pylint: disable=duplicate-code
     @classmethod
     def solve_day(cls) -> List[str]:
         raw_data = cls.get_lines_as_list_string('day_09.txt')

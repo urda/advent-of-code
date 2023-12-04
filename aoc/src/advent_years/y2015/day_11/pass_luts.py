@@ -32,7 +32,6 @@ class PassLuts:
         """Lookup a given value in the LUT."""
         return cls._master_lut[value]
 
-    # pylint: disable=duplicate-code
     _master_lut: Dict[Union[int, str], Union[int, str]] = {
         'a': 1,
         'b': 2,

@@ -59,7 +59,6 @@ class Day04(DayMeta):
     def _get_boards(cls) -> list[GameBoard]:
         results = []
 
-        # pylint: disable=duplicate-code
         with open(
                 cls.build_data_file_path(cls._data_file),
                 'r',
