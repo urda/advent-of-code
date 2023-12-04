@@ -1,4 +1,4 @@
-name: 2021 Testing
+name: 2023 Testing
 
 on:
   push:
@@ -35,4 +35,4 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run Tests
-        run: make test2021
+        run: make test2023
