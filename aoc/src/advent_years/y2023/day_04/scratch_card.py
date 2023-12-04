@@ -1,5 +1,5 @@
 """
-Copyright 2021-2023 Peter Urda
+Copyright 2023 Peter Urda
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,14 +14,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from .day_01 import Day01
-from .day_02 import Day02
-from .day_03 import Day03
-from .day_04 import Day04
+from dataclasses import (
+    dataclass,
+    field,
+)
+from typing import List
 
-__all__ = [
-    'Day01',
-    'Day02',
-    'Day03',
-    'Day04',
-]
+
+@dataclass
+class ScratchCard:
+    """
+    Dataclass to store the scratch card information parsed from the day.
+    """
+    card_id: int
+    winning_numbers: List[int] = field(default_factory=lambda: [])
+    numbers_owned: List[int] = field(default_factory=lambda: [])
