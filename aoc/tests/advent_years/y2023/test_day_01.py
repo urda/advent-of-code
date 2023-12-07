@@ -46,7 +46,6 @@ class TestDay01(TestCase):
         actual = Day01.compute_part_2(test_data)
         assert expected == actual
 
-    def test_debug(self):
         expected = 22
         actual = Day01.compute_part_2(['25xmvshkbmtkmvqpfhgq8fivefqctjm6two'])
         assert expected == actual
