@@ -113,16 +113,14 @@ class Day06(DayMeta):
         Run the races given the input time and distance pairs.
         """
         results = []
-        for race_idx in range(len(time_num)):
-            curr_time = time_num[race_idx]
-            curr_distance = distance_num[race_idx]
+        merged = list(zip(time_num, distance_num))
 
+        for curr_time, curr_distance in merged:
             winners = 0
             for x_test in range(1, curr_time):
                 winner = cls._get_methods(curr_time, curr_distance, x_test)
                 if winner:
                     winners += 1
-
             results.append(winners)
 
         return cls._dirty_multiply_list(results)
