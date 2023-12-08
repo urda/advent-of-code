@@ -1,5 +1,5 @@
 """
-Copyright 2021-2023 Peter Urda
+Copyright 2023 Peter Urda
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,20 +14,26 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from .day_01 import Day01
-from .day_02 import Day02
-from .day_03 import Day03
-from .day_04 import Day04
-from .day_05 import Day05
-from .day_06 import Day06
-from .day_07 import Day07
+from unittest import TestCase
 
-__all__ = [
-    'Day01',
-    'Day02',
-    'Day03',
-    'Day04',
-    'Day05',
-    'Day06',
-    'Day07',
-]
+from advent_years.y2023 import Day07
+
+
+class TestDay07(TestCase):
+    data = [
+        '32T3K 765',
+        'T55J5 684',
+        'KK677 28',
+        'KTJJT 220',
+        'QQQJA 483',
+    ]
+
+    def test_part_1(self):
+        expected = 6440
+        actual = Day07.compute_part_1(self.data)
+        assert expected == actual
+
+    def test_part_2(self):
+        expected = 5905
+        actual = Day07.compute_part_2(self.data)
+        assert expected == actual

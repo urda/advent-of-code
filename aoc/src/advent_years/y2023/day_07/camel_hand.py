@@ -1,5 +1,5 @@
 """
-Copyright 2021-2023 Peter Urda
+Copyright 2023 Peter Urda
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -14,20 +14,21 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from .day_01 import Day01
-from .day_02 import Day02
-from .day_03 import Day03
-from .day_04 import Day04
-from .day_05 import Day05
-from .day_06 import Day06
-from .day_07 import Day07
+from collections import Counter
+from dataclasses import dataclass
 
-__all__ = [
-    'Day01',
-    'Day02',
-    'Day03',
-    'Day04',
-    'Day05',
-    'Day06',
-    'Day07',
-]
+
+@dataclass(init=False)
+class CamelHand:
+    """
+    Class for representing a game of Camel cards
+    """
+
+    bid: int
+    hand: str
+    hand_counter: Counter
+
+    def __init__(self, raw_hand: str, raw_bid: str):
+        self.bid = int(raw_bid)
+        self.hand = raw_hand
+        self.hand_counter = Counter(raw_hand)
