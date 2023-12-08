@@ -15,6 +15,8 @@ limitations under the License.
 """
 
 import re
+from functools import reduce
+from operator import mul
 from typing import List
 
 from ..day_meta import DayMeta
@@ -55,16 +57,6 @@ class Day06(DayMeta):
         time_num = cls._parse_numbers(data[0], True)
         distance_num = cls._parse_numbers(data[1], True)
         return cls._run_races(time_num, distance_num)
-
-    @classmethod
-    def _dirty_multiply_list(cls, input_list: List[int]) -> int:
-        """
-        Take all the values in a list and multiply them together.
-        """
-        result = 1
-        for x in input_list:
-            result = result * x
-        return result
 
     @classmethod
     def _get_methods(cls, time_val: int, distance_val: int, button_time: int):
@@ -123,4 +115,4 @@ class Day06(DayMeta):
                     winners += 1
             results.append(winners)
 
-        return cls._dirty_multiply_list(results)
+        return reduce(mul, results)
