@@ -48,6 +48,7 @@ class Menu:
             MenuDayOption(15, y2015.Day15),
             MenuDayOption(16, y2015.Day16),
             MenuDayOption(17, y2015.Day17),
+            MenuDayOption(18, y2015.Day18),
         ],
         2021: [
             MenuDayOption(1, y2021.Day01),
