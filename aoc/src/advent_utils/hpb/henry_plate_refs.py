@@ -53,26 +53,31 @@ class HenryPlateRefs:
             '',
             '    @classmethod',
             '    def solve_day(cls) -> List[str]:',
+            '        raw_data = cls.get_lines_as_list_string('
+            f'\'day_{day_token:02d}.txt\')',
+            '',
             '        return [',
+            '            str(cls.compute_part_1(raw_data)),',
+            '            str(cls.compute_part_2(raw_data)),',
             '        ]',
             '',
             '    @classmethod',
-            '    def compute_part_1(cls, data):',
+            '    def compute_part_1(cls, data: List[str]) -> int:',
             '        """',
             f'        Parse the data and compute for Day {day_token:02d}.',
             '        :param data: The data from Advent of Code.',
             '        :returns: The result for Part 1.',
             '        """',
-            '        pass',
+            '        return -1',
             '',
             '    @classmethod',
-            '    def compute_part_2(cls, data):',
+            '    def compute_part_2(cls, data: List[str]) -> int:',
             '        """',
             f'        Parse the data and compute for Day {day_token:02d}.',
             '        :param data: The data from Advent of Code.',
             '        :returns: The result for Part 2.',
             '        """',
-            '        pass',
+            '        return -1',
             '',
         ]
 
@@ -123,23 +128,24 @@ class HenryPlateRefs:
             '',
             '',
             f'class TestDay{day_token:02d}(TestCase):',
-            '    data = None',
+            '    data = [',
+            '    ]',
             '',
-            '    def test_part_1(self):',
-            cls._get_true_false(),
+            cls._build_test_block(day_token, 1),
             '',
-            '    def test_part_2(self):',
-            cls._get_true_false(),
+            cls._build_test_block(day_token, 2),
             '',
         ]
 
         return os.linesep.join(file_contents)
 
     @classmethod
-    def _get_true_false(cls) -> str:
+    def _build_test_block(cls, day_token: int, part_num: int) -> str:
         data = [
-            '        expected = True',
-            '        actual = False',
+            f'    def test_part_{part_num}(self):',
+            '        expected = 1234',
+            f'        actual = Day{day_token}'
+            f'.compute_part_{part_num}(self.data)',
             '        assert expected == actual',
         ]
 
