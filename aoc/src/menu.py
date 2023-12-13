@@ -103,5 +103,6 @@ class Menu:
             MenuDayOption(10, y2023.Day10),
             MenuDayOption(11, y2023.Day11),
             MenuDayOption(12, y2023.Day12),
+            MenuDayOption(13, y2023.Day13),
         ],
     }
