@@ -1,9 +1,9 @@
-name: 2023 Testing
+name: Advent Archives - Full Testing
 
 on:
   push:
     branches:
-      - master
+      - advent-archives
 
 jobs:
   testing:
@@ -35,4 +35,4 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run Tests
-        run: make test2023
+        run: make test

@@ -1,9 +1,9 @@
-name: Advent of Code Linting
+name: Advent Archives - Code Linting
 
 on:
   push:
     branches:
-      - master
+      - advent-archives
 
 jobs:
   flake8:
