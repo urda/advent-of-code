@@ -13,3 +13,32 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
+
+from unittest import TestCase
+
+from advent_years.y2025 import Day01
+
+
+class TestDay01(TestCase):
+    data = [
+        'L68',
+        'L30',
+        'R48',
+        'L5',
+        'R60',
+        'L55',
+        'L1',
+        'L99',
+        'R14',
+        'L82',
+    ]
+
+    def test_part_1(self):
+        expected = 3
+        actual = Day01.compute_part_1(self.data)
+        assert expected == actual
+
+    def test_part_2(self):
+        expected = 6
+        actual = Day01.compute_part_2(self.data)
+        assert expected == actual

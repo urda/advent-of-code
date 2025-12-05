@@ -2,41 +2,48 @@
 
 https://adventofcode.com/
 
-# Environment Setup
+## Environment Setup
 
-**The following instructions are designed around `pyenv`, `pyenv-virtualenv`.**
+### Prerequisites
+
+**The following instructions are designed around a few tools. Make sure you have:**
+
+- `direnv`
+- `pyenv`
+- `pyenv-virtualenv`
+- `uv`
+
+Please make sure you have these available first.
+
+### Configure the Environment
 
 Prepare the base python:
 
 ```bash
-pyenv install 3.12.0
+pyenv install 3.14.1
 ```
 
 Create a python virtual environment:
 
 ```bash
-pyenv virtualenv 3.12.0 advent
+pyenv virtualenv 3.14.1 advent
 ```
 
-Switch to it after creation:
-
-```bash
-pyenv shell advent
-```
+Switch to it after creation by leaving and returning to the directory. `direnv` should switch to and from `advent`.
 
 Go ahead and update `pip`:
 
 ```bash
-pip install --upgrade pip
+uv pip install --upgrade pip
 ```
 
 And install the development requirements:
 
 ```bash
-pip install -r requirements-dev.txt
+uv pip install -r requirements-dev.txt
 ```
 
-# Running the "project"
+## Running the "project"
 
 You can launch the `advent-of-code` project with:
 
@@ -44,7 +51,7 @@ You can launch the `advent-of-code` project with:
 make run
 ```
 
-# Running the "utilities"
+## Running the "utilities"
 
 You can launch the project utilities with:
 

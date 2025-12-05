@@ -1,0 +1,44 @@
+name: Advent of Code - Full Testing
+
+on:
+  push:
+    branches:
+      - master
+      - private-master
+
+jobs:
+  testing:
+    runs-on: docker
+    container:
+      image: python:3.14.1-slim
+
+    steps:
+      - name: Show runner name 🏃
+        run: echo "Running on ${URDA_RUNNER_NAME}"
+
+      - name: Install base tools ⚙️
+        run: |
+          set -eux
+          apt-get update
+          apt-get install -y build-essential git nodejs
+          rm -rf /var/lib/apt/lists/*
+
+      # https://github.com/actions/checkout/releases
+      - name: Checkout ⬇️
+        uses: actions/checkout@v6
+        env:
+          GIT_SSL_NO_VERIFY: "true"
+
+      - name: Environment Report 🔍
+        run: |
+            echo Python Version ... $(python --version)
+
+      - name: Install dependencies ⚙️
+        working-directory: ./aoc
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Tests 🧪
+        working-directory: ./aoc
+        run: make test

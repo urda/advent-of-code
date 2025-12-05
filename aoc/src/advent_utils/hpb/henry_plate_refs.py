@@ -144,7 +144,7 @@ class HenryPlateRefs:
         data = [
             f'    def test_part_{part_num}(self):',
             '        expected = 1234',
-            f'        actual = Day{day_token}'
+            f'        actual = Day{day_token:02d}'
             f'.compute_part_{part_num}(self.data)',
             '        assert expected == actual',
         ]
