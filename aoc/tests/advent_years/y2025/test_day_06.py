@@ -12,27 +12,27 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-
-The entry point for the ADVENT OF CODE!
 """
 
-from dataclasses import dataclass
+from unittest import TestCase
 
-from advent_utils.popo import MenuDayOption
-from advent_years import (
-    y2025,
-)
+from advent_years.y2025 import Day06
 
 
-@dataclass(init=False, frozen=True)
-class Menu:
-    menu_entries = {
-        2025: [
-            MenuDayOption(1, y2025.Day01),
-            MenuDayOption(2, y2025.Day02),
-            MenuDayOption(3, y2025.Day03),
-            MenuDayOption(4, y2025.Day04),
-            MenuDayOption(5, y2025.Day05),
-            MenuDayOption(6, y2025.Day06),
-        ],
-    }
+class TestDay06(TestCase):
+    data = [
+        '123 328  51 64',
+        ' 45 64  387 23',
+        '  6 98  215 314',
+        '*   +   *   +',
+    ]
+
+    def test_part_1(self):
+        expected = 4277556
+        actual = Day06.compute_part_1(self.data)
+        assert expected == actual
+
+    def test_part_2(self):
+        expected = 3263827
+        actual = Day06.compute_part_2(self.data)
+        assert expected == actual
